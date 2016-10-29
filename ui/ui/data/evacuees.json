@@ -1,0 +1,247 @@
+[
+  {
+    "id": "1",
+    "name": "Casa di Mario",
+    "address": {
+      "id": "9",
+      "text": "ciao",
+      "phone": "312 1234568",
+      "city": "Fabriano",
+      "state": "Ancona",
+      "zip": "60044",
+      "country": "Italy",
+      "latitude": "43.3213845",
+      "longitude": "13.1614112" },
+    "description": "descrizione",
+    "total_seats": 10,
+    "available_seats": 4,
+    "available": true,
+    "active": true,
+    "evacuees": [
+      {
+        "id": "3",
+        "name": "Mario",
+        "surname": "Rossi",
+        "fiscal_code": "RSSMARqualcosa",
+        "address": {
+          "id": "9",
+          "text": "via degli Hackaton, 1",
+          "phone": "312 1234568",
+          "city": "Fabriano",
+          "state": "Ancona",
+          "zip": "60044",
+          "country": "Italy",
+          "latitude": "32",
+          "longitude": "13" },
+        "email": "hackaton@example.org",
+        "password": "admin123",
+        "category": "adult",
+        "assigned": true,
+        "group": [
+          {
+            "id": "23",
+            "name": "Filippo",
+            "surname": "Bianchi",
+            "fiscal_code": "BNCFLPciao",
+            "category": "teen" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Casa di Gianni",
+    "address": {
+      "id": "9",
+      "text": "ciao",
+      "phone": "312 1234568",
+      "city": "Fabriano",
+      "state": "Ancona",
+      "zip": "60044",
+      "country": "Italy",
+      "latitude": "43.2861289",
+      "longitude": "13.4327242" },
+    "description": "descrizione",
+    "total_seats": 10,
+    "available_seats": 0,
+    "available": true,
+    "active": true,
+    "evacuees": [
+      {
+        "id": "3",
+        "name": "Mario",
+        "surname": "Rossi",
+        "fiscal_code": "RSSMARqualcosa",
+        "address": {
+          "id": "9",
+          "text": "via degli Hackaton, 1",
+          "phone": "312 1234568",
+          "city": "Fabriano",
+          "state": "Ancona",
+          "zip": "60044",
+          "country": "Italy",
+          "latitude": "32",
+          "longitude": "13" },
+        "email": "hackaton@example.org",
+        "password": "admin123",
+        "category": "adult",
+        "assigned": true,
+        "group": [
+          {
+            "id": "23",
+            "name": "Filippo",
+            "surname": "Bianchi",
+            "fiscal_code": "BNCFLPciao",
+            "category": "teen" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "B&B di Maria",
+    "address": {
+      "id": "9",
+      "text": "ciao",
+      "phone": "312 1234568",
+      "city": "Fabriano",
+      "state": "Ancona",
+      "zip": "60044",
+      "country": "Italy",
+      "latitude": "43.2868061",
+      "longitude": "13.4748299" },
+    "description": "descrizione",
+    "total_seats": 10,
+    "available_seats": 10,
+    "available": true,
+    "active": true,
+    "evacuees": [
+      {
+        "id": "3",
+        "name": "Mario",
+        "surname": "Rossi",
+        "fiscal_code": "RSSMARqualcosa",
+        "address": {
+          "id": "9",
+          "text": "via degli Hackaton, 1",
+          "phone": "312 1234568",
+          "city": "Fabriano",
+          "state": "Ancona",
+          "zip": "60044",
+          "country": "Italy",
+          "latitude": "32",
+          "longitude": "13" },
+        "email": "hackaton@example.org",
+        "password": "admin123",
+        "category": "adult",
+        "assigned": true,
+        "group": [
+          {
+            "id": "23",
+            "name": "Filippo",
+            "surname": "Bianchi",
+            "fiscal_code": "BNCFLPciao",
+            "category": "teen" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Casa di Lorenzo",
+    "address": {
+      "id": "9",
+      "text": "ciao",
+      "phone": "312 1234568",
+      "city": "Fabriano",
+      "state": "Ancona",
+      "zip": "60044",
+      "country": "Italy",
+      "latitude": "43.3316688",
+      "longitude": "13.497499" },
+    "description": "descrizione",
+    "total_seats": 10,
+    "available_seats": 2,
+    "available": true,
+    "active": true,
+    "evacuees": [
+      {
+        "id": "3",
+        "name": "Mario",
+        "surname": "Rossi",
+        "fiscal_code": "RSSMARqualcosa",
+        "address": {
+          "id": "9",
+          "text": "via degli Hackaton, 1",
+          "phone": "312 1234568",
+          "city": "Fabriano",
+          "state": "Ancona",
+          "zip": "60044",
+          "country": "Italy",
+          "latitude": "32",
+          "longitude": "13" },
+        "email": "hackaton@example.org",
+        "password": "admin123",
+        "category": "adult",
+        "assigned": true,
+        "group": [
+          {
+            "id": "23",
+            "name": "Filippo",
+            "surname": "Bianchi",
+            "fiscal_code": "BNCFLPciao",
+            "category": "teen" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "B&B di Luca",
+    "address": {
+      "id": "9",
+      "text": "ciao",
+      "phone": "312 1234568",
+      "city": "Fabriano",
+      "state": "Ancona",
+      "zip": "60044",
+      "country": "Italy",
+      "latitude": "43.296292",
+      "longitude": "13.574712" },
+    "description": "descrizione",
+    "total_seats": 10,
+    "available_seats": 2,
+    "available": true,
+    "active": true,
+    "evacuees": [
+      {
+        "id": "3",
+        "name": "Mario",
+        "surname": "Rossi",
+        "fiscal_code": "RSSMARqualcosa",
+        "address": {
+          "id": "9",
+          "text": "via degli Hackaton, 1",
+          "phone": "312 1234568",
+          "city": "Fabriano",
+          "state": "Ancona",
+          "zip": "60044",
+          "country": "Italy",
+          "latitude": "32",
+          "longitude": "13" },
+        "email": "hackaton@example.org",
+        "password": "admin123",
+        "category": "adult",
+        "assigned": true,
+        "group": [
+          {
+            "id": "23",
+            "name": "Filippo",
+            "surname": "Bianchi",
+            "fiscal_code": "BNCFLPciao",
+            "category": "teen" }
+        ]
+      }
+    ]
+  }
+]
