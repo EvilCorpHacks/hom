@@ -1,0 +1,134 @@
+swagger: '2.0'
+info:
+  title: Xenia
+  description: API per Xenia
+  version: "1.0"
+host: localhost:9000
+schemes:
+  - http
+basePath: /xenia
+produces:
+  - application/json
+
+
+####################################
+########### DEFINITIONS ############
+
+definitions:
+
+  evacueeCategory:
+    type: string
+    enum: &evacueeCategory
+      - pregnant
+      - handicapped
+      - child
+      - teen
+      - adult
+      - elder
+
+  address:
+    type: object
+    properties:
+      id:
+        type: string
+      text:
+        type: string
+      phone:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
+        type: string
+      country:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+
+
+  structure:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      address:
+        $ref: "#/definitions/address"
+      description:
+        type: string
+      total_seats:
+        type: number
+      available_seats:
+        type: number
+      startAvailableDate:
+        type: string
+        format: date
+      endAvailableDate:
+        type: string
+        format: date
+      available: # tenerlo?
+        type: boolean
+      active:
+        type: boolean
+
+  volunteer:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      surname:
+        type: string
+      fiscal_code:
+        type: string
+      address:
+        $ref: "#/definitions/address"
+      structures:
+        type: array
+        items:
+          $ref: "#/definitions/structure"
+      note:
+        type: string
+
+  evacuee:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      surname:
+        type: string
+      fiscal_code:
+        type: string
+      address:
+        $ref: "#/definitions/address"
+      category:
+        $ref: "#/definitions/evacueeCategory"
+      group:
+        type: array
+        items:
+          $ref: "#/definitions/simpleEvacuee"
+
+  simpleEvacuee:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      surname:
+        type: string
+      fiscal_code:
+        type: string
+      address:
+        $ref: "#/definitions/address"
+      category:
+        $ref: "#/definitions/evacueeCategory"
+
+
