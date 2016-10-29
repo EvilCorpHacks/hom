@@ -29,4 +29,4 @@ RUN mkdir -p /dist && \
 
 USER app
 RUN gulp build
-CMD ["nodemon", "-x", "'gulp serve'", "-w", "/code/gulpfile.js"]
+CMD ["nodemon", "-x", "gulp serve", "-w", "/code/gulpfile.js"]
