@@ -9,8 +9,13 @@ bash:
 	${DCX} app bash
 
 init:
+	mkdir -p static
 	${DCX} app django-admin migrate
 	${DCX} app django-admin createsuperuser
+	${DCX} app django-admin collectstatic
+
+static:
+	mkdir -p static
 	${DCX} app django-admin collectstatic
 
 update:
