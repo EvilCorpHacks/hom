@@ -29,11 +29,60 @@ app.config(function(
   $urlRouterProvider
     .otherwise('admin');
 
+  // structure earthquake assignature assignatureListGroup 
   $stateProvider
     .state('admin', {
       url: '/admin',
       templateUrl: '/ui/admin.html',
       controller: 'AdminController'
+    })
+
+    .state('vol_main', {
+      url: '/vol_main',
+      templateUrl: '/ui/vol_main.html',
+      controller: 'VolMainController'
+    })
+
+    .state('vol_create_structure', {
+      url: '/vol_create_structure',
+      templateUrl: '/ui/vol_create_structure.html',
+      controller: 'VolCreateStructureController'
+    })
+
+    .state('all_view_map', {
+      url: '/all_view_map',
+      templateUrl: '/ui/all_view_map.html',
+      controller: 'AllViewMapController'
+    })
+
+    .state('eva_main', {
+      url: '/eva_main',
+      templateUrl: '/ui/eva_main.html',
+      controller: 'EvaMainController'
+    })
+
+    .state('eva_view_structure', {
+      url: '/eva_view_structure',
+      templateUrl: '/ui/eva_view_structure.html',
+      controller: 'EvaViewStructureController'
+    })
+
+    .state('amm_main', {
+      url: '/amm_main',
+      templateUrl: '/ui/amm_main.html',
+      controller: 'AllViewMapController'
+    })
+
+    .state('amm_assign_1_structure', {
+      url: '/amm_assign_1_structure',
+      templateUrl: '/ui/amm_assign_1_structure.html',
+      controller: 'AmmAssign1StructureController'
+    })
+
+    .state('amm_assign_2_evacuees', {
+      url: '/amm_assign_2_evacuees',
+      templateUrl: '/ui/amm_assign_2_evacuees.html',
+      controller: 'AmmAssign2EvacueesController'
     })
 
     .state('main', {
