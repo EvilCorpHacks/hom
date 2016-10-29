@@ -40,8 +40,7 @@ app.controller('AllViewMapController', function($http, $rootScope, $scope) {
                    'OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  $http.get('/ui/data/structures.json').success(function(data) {
-    console.log(data);
+  $http.get('/api/structures').success(function(data) {
     data.forEach(function(p) {
       let m = L.marker([p.address.latitude, p.address.longitude], {icon: myIcon}).addTo(map);
       let popupContent = `
@@ -53,14 +52,12 @@ app.controller('AllViewMapController', function($http, $rootScope, $scope) {
   });
 
   $http.get('/ui/data/google-places.json').success(function(data) {
-    console.log(data);
     data.forEach(function(p) {
       L.marker(p).addTo(map);
     });
   });
 
   $http.get('/ui/data/earthquakes.json').success(function(data) {
-    console.log(data);
     data.forEach(function(p) {
       L.circleMarker(p, {
         'radius': getRadius(p.magnitude),
