@@ -4,8 +4,9 @@ let app = angular.module('app', [
   'satellizer',
   'angular-websocket',
   'angular-loading-bar'
-])
-.config(function(
+]);
+
+app.config(function(
     $stateProvider, $urlRouterProvider,
     $compileProvider,
     RestangularProvider,
@@ -26,43 +27,55 @@ let app = angular.module('app', [
 
   // URLs
   $urlRouterProvider
-    .otherwise('main');
+    .otherwise('admin');
 
   $stateProvider
+    .state('admin', {
+      url: '/admin',
+      templateUrl: '/ui/admin.html',
+      controller: 'AdminController'
+    })
+
     .state('main', {
-      url: '',
+      url: '/',
       template: `
         <p>aaaa</p>
         <div id="map"></div>
       `,
       controller($http, $rootScope, $scope) {
-        // points
-        let point = [43.34, 12.89];
+        // TODO
+        let point = [43.296292, 13.574712];
+
+        var myIcon = new L.Icon({
+          iconUrl: '/ui/marker-icon-green.png',
+          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          shadowSize: [41, 41]
+        });
 
         // create the map (map container must be loaded in dom)
-        var map = L.map('map').setView(point, 9);
+        var map = L.map('map', {'minZoom': 9, 'maxZoom': 9}).setView(point, 9);
 
-        // just a marker
-        var marker = L.marker(point).addTo(map);
-        let popupContent = `
-          <a href="http://google.com/">
-            Hello man!
-          </a>`;
-        marker.bindPopup(popupContent).openPopup();
+        function getRadius(magnitude) {
+          if (magnitude >= 6.0) { return 160; }
+          if (magnitude >= 5.0) { return 120; }
+          if (magnitude >= 4.0) { return 80; }
+          if (magnitude >= 3.0) { return 40; }
+          return 40;
+        }
+        
+        function getColor(magnitude) {
+          if (magnitude >= 6.0) { return '#F00'; }
+          if (magnitude >= 5.0) { return '#FF8000'; }
+          if (magnitude >= 4.0) { return '#FF9933'; }
+          if (magnitude >= 3.0) { return '#FFB266'; }
+          return 'blue';
+        }
 
-        var circle = L.circle(point, {
-          color: 'red',
-          fillColor: '#f03',
-          fillOpacity: 0.3,
-          radius: 20000
-        }).addTo(map);
-
-        // return index of a marker in markers that match coordinates
-        var getMarkerFromCoords = function(coords, markers) {
-            return _.findIndex(markers, function(x) {
-                return _.isEqual(x, coords);
-            });
-
+        // return the center of the biggest earthquake
+        function get() {
         }
 
         // add open street map layer to map
@@ -71,39 +84,44 @@ let app = angular.module('app', [
                          'OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // get the supplier data and add to the map
-        $http.get('/api/geo/supplier/').success(function(data) {
-            suppliers = data._items;
-            markers = [];
+        $http.get('/ui/structures.json').success(function(data) {
+          console.log(data);
+          data.forEach(function(p) {
+            let m = L.marker([p.address.latitude, p.address.longitude], {icon: myIcon}).addTo(map);
+            let popupContent = `
+              <a href="http://google.com/">
+                ${p.name}
+              </a>`;
+            m.bindPopup(popupContent).openPopup();
+          });
+        });
 
-            suppliers.forEach(function(s) {
-                c = s.coords.reverse();
+        $http.get('/ui/google-places.json').success(function(data) {
+          console.log(data);
+          data.forEach(function(p) {
+            L.marker(p).addTo(map);
+          });
+        });
 
-                // this will move the point of a 
-                // random offset if there is duplicate
-                while(getMarkerFromCoords(c, markers) >= 0) {
-                    r = Math.random;
-                    c[0] += (r() - r()) / 1000.0;
-                    c[1] += (r() - r()) / 1000.0;
-                }
-
-                // push into the markers array
-                markers.push(c);
-
-                // add to map
-                L.marker(c).addTo(map)
-                    .bindPopup("<b>" + s.name + "</b><br>" + s.address + "<br>" +
-                               (s.webSite? '<a href="' + s.webSite + '">' +
-                                s.webSite + '</a>': ''));
-            });
+        $http.get('/ui/earthquakes.json').success(function(data) {
+          console.log(data);
+          data.forEach(function(p) {
+            L.circleMarker(p, {
+              'radius': getRadius(p.magnitude),
+              'color': getColor(p.magnitude),
+              'opacity': 0.8,
+              'fillOpacity': 0.1,
+              'fillColor': ''
+            }).addTo(map);
+          });
         });
 
       } // end controller
     });
-})
+});
 
 
-.run(function($rootScope, $auth, $state) {
+app.run(function($rootScope, $auth, $state) {
 
   $rootScope.login = function() {
     $auth.login({
@@ -112,7 +130,7 @@ let app = angular.module('app', [
     });
 
     if ($rootScope.isAuth()) {
-      return $state.go('addtest');
+      return $state.go('admin');
     } else {
       return $rootScope.msg = 'Error';
     }
@@ -122,7 +140,7 @@ let app = angular.module('app', [
     $auth.logout();
     //if not $auth.isAuthenticated()
     if (!$rootScope.isAuth()) {
-      return $state.go('main');
+      return $state.go('admin');
     }
   };
 
@@ -135,8 +153,8 @@ let app = angular.module('app', [
 
   $rootScope.goHome = function() {
     $('ul.tabs').tabs('select_tab', 'tab4');
-    return $state.go('main');
+    return $state.go('admin');
   };
 
-  return $state.go('main');
+  return $state.go('admin');
 });

@@ -22,14 +22,14 @@ class Address(Model):
     longitude = fields.FloatField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        requests.get(
-            'https://maps.googleapis.com/maps/api/geocode/json?address=%,%,%,%&key=%' % (
+        res = requests.get(
+            'https://maps.googleapis.com/maps/api/geocode/json?address={},{},{},{}&key={}'.format(
                 self.text, self.city, self.country, self.zip_code, API_KEY
             )
         )
-        location = requests.json()['results'][0]['geometry']['location']
-        self.latitude = location['latitude']
-        self.longitude = location['longitude']
+        location = res.json()['results'][0]['geometry']['location']
+        self.latitude = location['lat']
+        self.longitude = location['lng']
         super().save(*args, **kwargs)
 
 
