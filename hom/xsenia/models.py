@@ -42,7 +42,7 @@ class Evacuee(Model):
     assigned_time = fields.DateTimeField()
 
     @property
-    def assigned(self):
+    def is_assigned(self):
         return self.assigned_structure is not None
 
     @property
@@ -52,6 +52,7 @@ class Evacuee(Model):
     def assign_structure(self, structure):
         self.assign_structure = structure
         self.assigned_time = datetime.now()
+        self.save()
 
 
 class SimpleEvacuee(Model):
@@ -70,3 +71,15 @@ class Volunteer(Model):
     fiscal_code = fields.CharField(max_length=20)
     note = fields.CharField(max_length=200)
     address = models.ForeignKey(Address)
+
+
+class Notification(Model):
+    time = fields.DateTimeField()
+    message = fields.TextField()
+    readed = fields.BooleanField(default=False)
+    type = fields.CharField(max_length=50)  # Expected: hazard, assignment
+    user = fields.ForeignKey(User)
+
+    def mark_as_read(self):
+        self.readed = True
+        self.save()
