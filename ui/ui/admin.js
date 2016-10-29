@@ -1,3 +1,3 @@
-app.controller('AppController', function($scope) {
+app.controller('AdminController', function($scope) {
   $scope.greeting = 'Hola!';
 });

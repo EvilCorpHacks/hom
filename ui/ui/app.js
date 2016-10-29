@@ -4,8 +4,9 @@ let app = angular.module('app', [
   'satellizer',
   'angular-websocket',
   'angular-loading-bar'
-])
-.config(function(
+]);
+
+app.config(function(
     $stateProvider, $urlRouterProvider,
     $compileProvider,
     RestangularProvider,
@@ -30,13 +31,13 @@ let app = angular.module('app', [
 
   $stateProvider
     .state('admin', {
-      url: 'admin',
+      url: '/admin',
       templateUrl: '/ui/admin.html',
       controller: 'AdminController'
     })
 
     .state('main', {
-      url: '',
+      url: '/',
       template: `
         <p>aaaa</p>
         <div id="map"></div>
@@ -117,10 +118,10 @@ let app = angular.module('app', [
 
       } // end controller
     });
-})
+});
 
 
-.run(function($rootScope, $auth, $state) {
+app.run(function($rootScope, $auth, $state) {
 
   $rootScope.login = function() {
     $auth.login({
