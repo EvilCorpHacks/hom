@@ -9,7 +9,7 @@ let browserSync = require('browser-sync').create();
 // Default config
 let config = {
   'env': 'dev',
-  'name': 'HOM',
+  'name': 'evil-app',
   'index': '/code/index.pug',
   'partials': '/code/ui/partials/*.pug',
   'styles': '/code/ui/*.sass',
@@ -24,7 +24,7 @@ gulp.task('serve', ['index', 'partials', 'styles', 'scripts'], () => {
     server: {
       baseDir: [
         '/dist',
-        `/usr/local/lib/node_modules/${config.name}/node_modules`],
+        `/usr/local/lib/node_modules/${config.name}`],
       index: 'index.html' },
     host: '0.0.0.0',
     port: 8080,
