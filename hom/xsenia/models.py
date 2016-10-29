@@ -39,7 +39,7 @@ class Structure(Model):
     description = fields.CharField(max_length=250, blank=True, null=True)
     total_seats = fields.IntegerField(blank=True, null=True)
     available_seats = fields.IntegerField(blank=True, null=True)
-    active = fields.BooleanField(blank=True, null=True)
+    active = fields.BooleanField(default=True)
 
     def update_availability(self):
         self.available_seats = self.total_seats - reduce(
@@ -93,7 +93,7 @@ class Volunteer(Model):
 class Notification(Model):
     time = fields.DateTimeField(blank=True, null=True)
     message = fields.TextField(blank=True, null=True)
-    readed = fields.BooleanField(default=False, blank=True, null=True)
+    readed = fields.BooleanField(default=False)
     type = fields.CharField(max_length=50, blank=True, null=True)  # Expected: hazard, assignment
     user = models.ForeignKey(User, blank=True, null=True)
 
