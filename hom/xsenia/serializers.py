@@ -45,7 +45,7 @@ class SimpleEvacueeSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class EvacueeSerializer(serializers.HyperlinkedModelSerializer):
-    group = SimpleEvacueeSerializer()
+    group = SimpleEvacueeSerializer(many=True)
 
     class Meta:
         model = Evacuee
