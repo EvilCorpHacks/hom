@@ -35,8 +35,9 @@ html(lang='it', ng-app='app')
         .col.s9
           a(href='landing.html') Xenia
         .col.s3
-          i.fa.fa-twitter(aria-hidden='true' ng-if='state=="all_view_map"')
-          i.fa.fa-user(aria-hidden='true' ng-if='state!="all_view_map"')
+          i.fa.fa-twitter(aria-hidden='true' ng-if='$state.current.name=="all_view_map"')
+          i.fa.fa-user(aria-hidden='true' ng-if='$state.current.name!="all_view_map"')
+
 
     .row(style='margin-bottom:0px !important')
       main.col.s12.main
