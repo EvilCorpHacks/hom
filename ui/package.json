@@ -1,0 +1,21 @@
+{
+  "name": "evil-app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Evil Corp",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-loading-bar": "^0.9.0",
+    "angular-ui-router": "^0.3.1",
+    "angular-websocket": "^2.0.1",
+    "lodash": "^4.16.4",
+    "materialize-css": "^0.97.7",
+    "restangular": "^1.5.2",
+    "satellizer": "^0.15.5"
+  }
+}

@@ -2,13 +2,29 @@ version: '2'
 volumes:
   data: {}
 services:
+  web:
+    build: ./web
+    volumes:
+      - './web/site.conf:/etc/nginx/conf.d/site.conf:ro'
+      - './static:/code/static:ro'
+    ports: ['0.0.0.0:8080:8080']
+    depends_on: [app, ui]
+    restart: on-failure
+  ui:
+    build: ./ui
+    volumes: ['./ui:/code:rw']
+    ports:
+    - 127.0.0.1:3001:3001
+    - 127.0.0.1:8082:8080
+    depends_on: [app]
+    restart: always
   app:
     build: .
     volumes: ['.:/code:rw']
-    ports: ['127.0.0.1:8080:8080']
+    ports: ['127.0.0.1:8081:8080']
     depends_on: [db]
-    restart: always
     env_file: config.env
+    restart: always
   db:
     container_name: db
     image: postgres:9.5
