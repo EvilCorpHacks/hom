@@ -1,4 +1,4 @@
-from .models import Address, Structure, Evacuee, SimpleEvacuee
+from .models import Address, Structure, Volunteer, Evacuee, SimpleEvacuee
 from rest_framework import serializers
 
 
@@ -14,8 +14,8 @@ class StructureSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Structure
-        fields = ('name', 'description', 'total_seats',
-                'available_seats', 'active', 'address')
+        fields = ('name', 'description', 'total_seats', 'available_seats',
+                  'active', 'address')
 
     def create(self, validated_data):
         address_data = validated_data.pop('address')
@@ -28,15 +28,14 @@ class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
     address = AddressSerializer()
 
     class Meta:
-        model = Structure
-        fields = ('name', 'surname', 'fiscal_code',
-                'note', 'address')
+        model = Volunteer
+        fields = ('name', 'surname', 'fiscal_code', 'note', 'address')
 
     def create(self, validated_data):
         address_data = validated_data.pop('address')
         address = Address.objects.create(**address_data)
-        structure = Structure.objects.create(address=address, **validated_data)
-        return structure
+        volunteer = Volunteer.objects.create(address=address, **validated_data)
+        return volunteer
 
 
 class SimpleEvacueeSerializer(serializers.HyperlinkedModelSerializer):

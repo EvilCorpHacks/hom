@@ -7,4 +7,5 @@ Markdown==2.6.7
 psycopg2
 pymongo
 ipython
+requests
 #python-social-auth==0.2.21
