@@ -64,3 +64,5 @@ gulp.task('scripts', () => {
     .pipe(gulp.dest('/dist/ui'))
     .pipe(browserSync.stream());
 });
+
+gulp.task('default', ['serve']);
