@@ -133,7 +133,7 @@ app.config(function(
                          'OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        $http.get('/ui/structures.json').success(function(data) {
+        $http.get('/ui/data/structures.json').success(function(data) {
           console.log(data);
           data.forEach(function(p) {
             let m = L.marker([p.address.latitude, p.address.longitude], {icon: myIcon}).addTo(map);
@@ -145,14 +145,14 @@ app.config(function(
           });
         });
 
-        $http.get('/ui/google-places.json').success(function(data) {
+        $http.get('/ui/data/google-places.json').success(function(data) {
           console.log(data);
           data.forEach(function(p) {
             L.marker(p).addTo(map);
           });
         });
 
-        $http.get('/ui/earthquakes.json').success(function(data) {
+        $http.get('/ui/data/earthquakes.json').success(function(data) {
           console.log(data);
           data.forEach(function(p) {
             L.circleMarker(p, {
