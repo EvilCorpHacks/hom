@@ -50,3 +50,12 @@ class EvacueeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Evacuee
         fields = ('name', 'surname', 'fiscal_code', 'category', 'group')
+
+    def create(self, validated_data):
+        group_list = validated_data.pop('group')
+        evacuee = Evacuee.objects.create(**validated_data)
+        group = []
+        for item in group_list:
+            item['leader'] = evacuee
+            group.append(SimpleEvacuee.objects.create(**item))
+        return evacuee
