@@ -35,16 +35,13 @@ html(lang='it', ng-app='app')
         .col.s9
           a(href='landing.html') Xenia
         .col.s3
-          i.fa.fa-twitter(aria-hidden='true')
+          i.fa.fa-twitter(aria-hidden='true' ng-if='state=="all_view_map"')
+          i.fa.fa-user(aria-hidden='true' ng-if='state!="all_view_map"')
 
     .row(style='margin-bottom:0px !important')
-      main.col.s9.main
-        | MAPPPA QUIAAAAA
-      aside.col.s3.side
-        #twitter
-          a.twitter-timeline(href='https://twitter.com/INGVterremoti')
-            | Tweets by @INGVterremoti
-          script(async='', src='//platform.twitter.com/widgets.js', charset='utf-8')
+      main.col.s12.main
+        // Main content
+        div(ui-view='')
 
   .input-field.col.s12
      input(ng-model="username" id="username" type="text" class="validate")
@@ -55,6 +52,4 @@ html(lang='it', ng-app='app')
     label(for="password") Password
 
   a(ng-click="login()" href="#" class="waves-effect waves-blue btn")
-
-  div(ui-view='')
 
