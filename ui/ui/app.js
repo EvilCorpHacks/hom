@@ -33,11 +33,29 @@ let app = angular.module('app', [
       url: '',
       template: `
         <p>aaaa</p>
-        <div id="mapid"></div>
+        <div id="map"></div>
       `,
       controller($http, $rootScope, $scope) {
+        // points
+        let point = [43.34, 12.89];
+
         // create the map (map container must be loaded in dom)
-        var map = L.map('mapid').setView([41.89, 12.53], 6);
+        var map = L.map('map').setView(point, 9);
+
+        // just a marker
+        var marker = L.marker(point).addTo(map);
+        let popupContent = `
+          <a href="http://google.com/">
+            <b>Hello world!</b><br>I am a popup.
+          </a>`;
+        marker.bindPopup(popupContent).openPopup();
+
+        var circle = L.circle(point, {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.3,
+          radius: 20000
+        }).addTo(map);
 
         // return index of a marker in markers that match coordinates
         var getMarkerFromCoords = function(coords, markers) {
