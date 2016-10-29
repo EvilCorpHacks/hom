@@ -23,7 +23,7 @@ nav .fa-twitter{
 .side {
     border-left:1px solid #AAA;
     background: white;
-    height: 100vh;
+    height: calc(100vh - 84px);
     overflow-y: scroll;
 }
 
