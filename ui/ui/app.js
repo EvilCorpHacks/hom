@@ -70,7 +70,7 @@ app.config(function(
     .state('amm_main', {
       url: '/amm_main',
       templateUrl: '/ui/amm_main.html',
-      controller: 'AllViewMapController'
+      controller: 'AmmMainController'
     })
 
     .state('amm_assign_1_structure', {
