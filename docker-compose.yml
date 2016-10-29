@@ -1,0 +1,17 @@
+version: '2'
+volumes:
+  data: {}
+services:
+  app:
+    build: .
+    volumes: ['.:/code:rw']
+    ports: ['127.0.0.1:8080:8080']
+    depends_on: [db]
+    restart: always
+    env_file: config.env
+  db:
+    container_name: db
+    image: postgres:9.5
+    restart: on-failure
+    env_file: config.env
+    volumes: ['data:/var/lib/postgresql/data/hom:rw']

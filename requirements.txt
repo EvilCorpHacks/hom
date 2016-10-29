@@ -1,0 +1,8 @@
+Django==1.10.2
+django-filter==0.15.3
+djangorestframework==3.5.1
+gunicorn==19.6.0
+Markdown==2.6.7
+psycopg2
+pymongo
+#python-social-auth==0.2.21
