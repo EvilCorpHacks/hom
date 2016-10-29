@@ -33,3 +33,11 @@ nav .fa-twitter{
     
 }
 
+.card{
+    border-top: #27AC24 3px solid
+}
+
+.card .s3 i{
+    font-size: 100px;
+    color: #27AC24
+}
