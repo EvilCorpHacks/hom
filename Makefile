@@ -19,7 +19,7 @@ update:
 
 rm:
 	${DC} stop
-	${DC} rm -afv
+	${DC} rm -fv
 	rm -rf static/
 
 rolling:
