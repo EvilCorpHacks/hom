@@ -46,7 +46,7 @@ let app = angular.module('app', [
         var marker = L.marker(point).addTo(map);
         let popupContent = `
           <a href="http://google.com/">
-            <b>Hello world!</b><br>I am a popup.
+            Hello man!
           </a>`;
         marker.bindPopup(popupContent).openPopup();
 
