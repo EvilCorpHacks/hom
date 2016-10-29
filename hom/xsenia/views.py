@@ -21,11 +21,11 @@ class StructureViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class VolunteerSerializer(viewsets.ModelViewSet):
+class VolunteerViewSet(viewsets.ModelViewSet):
     queryset = Volunteer.objects.all()
     serializer_class = VolunteerSerializer
 
 
-class EvacueeSerializer(viewsets.ModelViewSet):
+class EvacueeViewSet(viewsets.ModelViewSet):
     queryset = Evacuee.objects.all()
     serializer_class = EvacueeSerializer
