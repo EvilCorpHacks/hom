@@ -1,0 +1,171 @@
+# volunteers
+- model: xsenia.volunteer
+  pk: 1
+  fields:
+    name: Carlo
+    surname: Gioacchino
+    fiscal_code: GIO039403930
+    address_id: 1
+- model: xsenia.volunteer
+  pk: 2
+  fields:
+    name: Luca
+    surname: Piergiacomo
+    fiscal_code: LIO039403930
+    address_id: 3
+- model: xsenia.volunteer
+  pk: 3
+  fields:
+    name: Giancarlo
+    surname: Paolozzi
+    fiscal_code: GIP039403930
+    address_id: 4
+# structure
+- model: xsenia.structure
+  pk: 1
+  fields:
+    name: Hotel Grandi
+    description: Il nostro hotel puo' offrirvi alcune stanze
+    total_seats: 8
+    available_seats: 8
+    active: True
+    owner_id: 1
+    address_id: 1
+- model: xsenia.structure
+  pk: 2
+  fields:
+    name: Hotel Piccioli
+    description: Se avete bisogno contattateci
+    total_seats: 5
+    available_seats: 5
+    active: True
+    owner_id: 1
+    address_id: 2
+- model: xsenia.structure
+  pk: 3
+  fields:
+    name: Casa privata
+    description: Se avete bisogno contattatemi
+    total_seats: 2
+    available_seats: 2
+    active: True
+    owner_id: 2
+    address_id: 3
+- model: xsenia.structure
+  pk: 4
+  fields:
+    name: B&B
+    description: Se avete bisogno contattatemi
+    total_seats: 4
+    available_seats: 4
+    active: True
+    owner_id: 3
+    address_id: 4
+# address
+- model: xsenia.address
+  pk: 1
+  fields:
+    text: Via Due Fonti 45
+    phone: '3333334521'
+    city: Macerata
+    state: MC
+    zip_code: '62100'
+    country: Italia
+    latitude: 43.304264
+    longitude: 13.440068
+- model: xsenia.address
+  pk: 2
+  fields:
+    text: Variante Villa Potenza
+    phone: '3333334521'
+    city: Macerata
+    state: MC
+    zip_code: '62100'
+    country: Italia
+    latitude: 43.328542
+    longitude: 13.430838
+- model: xsenia.address
+  pk: 3
+  fields:
+    text: Via Luigi Pirandello 1
+    phone: '334445532'
+    city: Macerata
+    state: MC
+    zip_code: '62100'
+    country: Italia
+    latitude: 43.284393
+    longitude: 13.432099
+- model: xsenia.address
+  pk: 4
+  fields:
+    text: Via Borsellino 33
+    phone: '335554369'
+    city: Macerata
+    state: MC
+    zip_code: '62100'
+    country: Italia
+    latitude: 43.43291180
+    longitude: 13.470678
+# evacuees
+- model: xsenia.evacuee
+  pk: 1
+  fields:
+    name: Franco
+    surname: Battisti
+    fiscal_code: FBT39490349
+    category: adult
+- model: xsenia.evacuee
+  pk: 2
+  fields:
+    name: Roberta
+    surname: Nari
+    fiscal_code: RBT39490349
+    category: elder
+- model: xsenia.evacuee
+  pk: 3
+  fields:
+    name: Giacomo
+    surname: Botticelli
+    fiscal_code: RBT39490349
+    category: adult
+# simple evacuees
+- model: xsenia.simpleevacuee
+  pk: 1
+  fields:
+    name: Giovanni
+    surname: Battisti
+    fiscal_code: RBT39490349
+    category: child
+    leader_id: 1
+- model: xsenia.simpleevacuee
+  pk: 2
+  fields:
+    name: Clara
+    surname: Bella
+    fiscal_code: RBT39490349
+    category: pregnant
+    leader_id: 1
+- model: xsenia.simpleevacuee
+  pk: 3
+  fields:
+    name: Primo
+    surname: Nari
+    fiscal_code: RBT39490349
+    category: elder
+    leader_id: 2
+- model: xsenia.simpleevacuee
+  pk: 4
+  fields:
+    name: Simone
+    surname: Giacani
+    fiscal_code: RBT39490349
+    category: child
+    leader_id: 3
+- model: xsenia.simpleevacuee
+  pk: 5
+  fields:
+    name: Simone
+    surname: Giacani
+    fiscal_code: RBT39490349
+    category: handicapped
+    leader_id: 3
