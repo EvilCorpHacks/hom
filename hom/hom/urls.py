@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
+import xsenia.views
 import rest_framework_jwt.views
 
 router = routers.DefaultRouter()
+router.register(r'structures', xsenia.views.StructureViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
