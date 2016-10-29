@@ -21,3 +21,7 @@ rm:
 	${DC} stop
 	${DC} rm -afv
 	rm -rf static/
+
+rolling:
+	git pull origin master
+	${DC} up -d --build
