@@ -24,12 +24,14 @@ class Address(Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         requests.get(
-            'https://maps.googleapis.com/maps/api/geocode/json?address=%,%,%,%' % (
-                text, city, country, zip_code
+            'https://maps.googleapis.com/maps/api/geocode/json?address=%,%,%,%&key=%' % (
+                self.text, self.city, self.country, self.zip_code, API_KEY
             )
         )
-        requests.json()
-
+        location = requests.json()['results'][0]['geometry']['location']
+        self.latitude = location['latitude']
+        self.longitude = location['longitude']
+        super().save(*args, **kwargs)
 
 class Structure(Model):
     name = fields.CharField(max_length=50, blank=True, null=True)
