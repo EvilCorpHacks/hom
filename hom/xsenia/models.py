@@ -22,7 +22,6 @@ class Address(Model):
     longitude = fields.FloatField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
         requests.get(
             'https://maps.googleapis.com/maps/api/geocode/json?address=%,%,%,%&key=%' % (
                 self.text, self.city, self.country, self.zip_code, API_KEY
@@ -32,6 +31,7 @@ class Address(Model):
         self.latitude = location['latitude']
         self.longitude = location['longitude']
         super().save(*args, **kwargs)
+
 
 class Structure(Model):
     name = fields.CharField(max_length=50, blank=True, null=True)
