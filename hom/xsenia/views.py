@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import Structure, Volunteer, Evacuee, SimpleEvacuee
 from rest_framework import viewsets
-from xsenia.serializers import StructureSerializer, VolunteerSerializer
+from xsenia.serializers import StructureSerializer, VolunteerSerializer, EvacueeSerializer
+
 
 # Create your views here.
 class StructureViewSet(viewsets.ModelViewSet):

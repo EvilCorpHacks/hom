@@ -22,7 +22,7 @@ import rest_framework_jwt.views
 router = routers.DefaultRouter()
 router.register(r'structures', xsenia.views.StructureViewSet)
 router.register(r'volunteers', xsenia.views.VolunteerSerializer)
-router.register(r'evacuee', xsenia.views.EvacueeSerializer)
+router.register(r'evacuees', xsenia.views.EvacueeSerializer)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
