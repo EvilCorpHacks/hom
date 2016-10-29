@@ -26,6 +26,7 @@ definitions:
       - adult
       - elder
 
+
   address:
     type: object
     properties:
@@ -49,6 +50,19 @@ definitions:
         type: number
 
 
+  assignment:
+    type: object
+    properties:
+      id:
+        type: string
+      timestamp:
+        type: number
+      structure_id:
+        type: string
+      evacuee_id:
+        type: string
+
+
   structure:
     type: object
     properties:
@@ -64,16 +78,11 @@ definitions:
         type: number
       available_seats:
         type: number
-      startAvailableDate:
-        type: string
-        format: date
-      endAvailableDate:
-        type: string
-        format: date
       available: # tenerlo?
         type: boolean
       active:
         type: boolean
+
 
   volunteer:
     type: object
@@ -95,6 +104,7 @@ definitions:
       note:
         type: string
 
+
   evacuee:
     type: object
     properties:
@@ -115,6 +125,7 @@ definitions:
         items:
           $ref: "#/definitions/simpleEvacuee"
 
+
   simpleEvacuee:
     type: object
     properties:
@@ -132,3 +143,56 @@ definitions:
         $ref: "#/definitions/evacueeCategory"
 
 
+####################################
+############## PATHS ###############
+
+
+paths:
+  '/volunteer/':
+    get:
+      produces:
+        - application/json
+      responses:
+        200:
+          description: lista dei volontari
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/volunteer'
+    post:
+      parameters:
+        - name: order
+          in: body
+          description: Ordine da aggiungere
+          required: true
+          schema:
+            $ref: '#/definitions/volunteer'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: singolo volontari
+          schema:
+            $ref: '#/definitions/volunteer'
+  '/volunteer/{volunteerId}':
+    get:
+      produces:
+        - application/json
+      parameters:
+      - name: volunteerId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: singolo volontario
+          schema:
+            type: object
+            properties:
+              volunteer:
+                $ref: '#/definitions/volunteer'
