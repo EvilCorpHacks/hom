@@ -57,8 +57,6 @@ definitions:
         type: string
       timestamp:
         type: number
-      structure_id:
-        type: string
       evacuee_id:
         type: string
 
@@ -82,6 +80,10 @@ definitions:
         type: boolean
       active:
         type: boolean
+      evacuees:
+        type: array
+        items:
+          $ref: "#/definitions/evacuee"
 
 
   volunteer:
@@ -97,6 +99,10 @@ definitions:
         type: string
       address:
         $ref: "#/definitions/address"
+      email:
+        type: string
+      password:
+        type: string
       structures:
         type: array
         items:
@@ -118,8 +124,14 @@ definitions:
         type: string
       address:
         $ref: "#/definitions/address"
+      email:
+        type: string
+      password:
+        type: string
       category:
         $ref: "#/definitions/evacueeCategory"
+      assigned:
+        type: boolean
       group:
         type: array
         items:
@@ -137,10 +149,23 @@ definitions:
         type: string
       fiscal_code:
         type: string
-      address:
-        $ref: "#/definitions/address"
       category:
         $ref: "#/definitions/evacueeCategory"
+
+
+  administrator:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      surname:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
 
 
 ####################################
@@ -148,7 +173,7 @@ definitions:
 
 
 paths:
-  '/volunteer/':
+  '/volunteers/':
     get:
       produces:
         - application/json
@@ -164,9 +189,9 @@ paths:
                   $ref: '#/definitions/volunteer'
     post:
       parameters:
-        - name: order
+        - name: volunteer
           in: body
-          description: Ordine da aggiungere
+          description: creazione volontario
           required: true
           schema:
             $ref: '#/definitions/volunteer'
@@ -176,10 +201,8 @@ paths:
         - application/json
       responses:
         200:
-          description: singolo volontari
-          schema:
-            $ref: '#/definitions/volunteer'
-  '/volunteer/{volunteerId}':
+          description: tutto ok
+  '/volunteers/{volunteerId}':
     get:
       produces:
         - application/json
@@ -196,3 +219,95 @@ paths:
             properties:
               volunteer:
                 $ref: '#/definitions/volunteer'
+  '/evacuees/':
+    get:
+      produces:
+        - application/json
+      responses:
+        200:
+          description: lista sfollati
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/evacuee'
+    post:
+      parameters:
+        - name: evacuee
+          in: body
+          description: creazione sfollato
+          required: true
+          schema:
+            $ref: '#/definitions/evacuee'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: tutto ok
+  '/evacuees/{evacueeId}':
+    get:
+      produces:
+        - application/json
+      parameters:
+      - name: evacueeId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: singolo sfollato
+          schema:
+            type: object
+            properties:
+              volunteer:
+                $ref: '#/definitions/evacuee'
+  '/structures/':
+    get:
+      produces:
+        - application/json
+      responses:
+        200:
+          description: lista strutture
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/structure'
+    post:
+      parameters:
+        - name: structure
+          in: body
+          description: creazione struttura
+          required: true
+          schema:
+            $ref: '#/definitions/structure'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: tutto ok
+  '/structures/{structureId}':
+    get:
+      produces:
+        - application/json
+      parameters:
+      - name: structureId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: singola struttura
+          schema:
+            type: object
+            properties:
+              volunteer:
+                $ref: '#/definitions/structure'
