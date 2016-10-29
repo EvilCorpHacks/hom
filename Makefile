@@ -1,6 +1,12 @@
 DC := docker-compose
 DCX := ${DC} exec
 
+clear:
+	${DC} stop db
+	${DC} rm -f db
+	docker volume rm hom_data
+	${DC} up -d
+
 up:
 	${DC} up -d
 	${DC} ps
