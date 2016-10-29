@@ -12,7 +12,7 @@ services:
     restart: on-failure
   ui:
     build: ./ui
-    command: nodemon -x 'gulp serve' -w /code/gulpfile.js
+    command: nodemon -x gulp serve
     volumes: ['./ui:/code:rw']
     ports:
     - 0.0.0.0:3001:3001
