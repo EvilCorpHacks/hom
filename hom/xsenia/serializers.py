@@ -1,4 +1,4 @@
-from .models import Address, Structure
+from .models import Address, Structure, Evacuee, SimpleEvacuee
 from rest_framework import serializers
 
 
@@ -37,3 +37,17 @@ class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
         address = Address.objects.create(**address_data)
         structure = Structure.objects.create(address=address, **validated_data)
         return structure
+
+
+class SimpleEvacueeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = SimpleEvacuee
+        fields = ('name', 'surname', 'fiscal_code', 'category')
+
+
+class EvacueeSerializer(serializers.HyperlinkedModelSerializer):
+    group = SimpleEvacueeSerializer()
+
+    class Meta:
+        model = Evacuee
+        fields = ('name', 'surname', 'fiscal_code', 'category', 'group')
