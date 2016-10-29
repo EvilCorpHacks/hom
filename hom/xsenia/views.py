@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Structure, Volunteer
+from .models import Structure, Volunteer, Evacuee, SimpleEvacuee
 from rest_framework import viewsets
 from xsenia.serializers import StructureSerializer, VolunteerSerializer
 
@@ -18,6 +18,13 @@ class StructureViewSet(viewsets.ModelViewSet):
         if user is not None:
             queryset = queryset.filter(structure__user=user)
         return queryset
+
+
 class VolunteerSerializer(viewsets.ModelViewSet):
     queryset = Volunteer.objects.all()
     serializer_class = VolunteerSerializer
+
+
+class EvacueeSerializer(viewsets.ModelViewSet):
+    queryset = Evacuee.objects.all()
+    serializer_class = EvacueeSerializer
