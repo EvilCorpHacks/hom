@@ -78,7 +78,7 @@ class Notification(Model):
     message = fields.TextField()
     readed = fields.BooleanField(default=False)
     type = fields.CharField(max_length=50)  # Expected: hazard, assignment
-    user = fields.ForeignKey(User)
+    user = models.ForeignKey(User)
 
     def mark_as_read(self):
         self.readed = True
