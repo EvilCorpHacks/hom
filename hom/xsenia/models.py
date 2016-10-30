@@ -50,6 +50,7 @@ class Structure(Model):
     def update_availability(self):
         self.available_seats = self.total_seats - reduce(
             lambda n, l: n + l.group_size, self.evacuees)
+        self.save()
 
 
 class Evacuee(Model):
@@ -76,6 +77,7 @@ class Evacuee(Model):
     def assign_structure(self, structure):
         self.assigned_structure = structure
         self.assigned_time = datetime.now()
+        structure.update_availability()
         self.save()
 
 
