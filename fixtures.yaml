@@ -115,6 +115,78 @@
 - model: auth.permission
   pk: 39
   fields: {name: Can delete structure, content_type: 13, codename: delete_structure}
+- model: auth.permission
+  pk: 40
+  fields: {name: Can add permission, content_type: 2, codename: add_permission}
+- model: auth.permission
+  pk: 41
+  fields: {name: Can change permission, content_type: 2, codename: change_permission}
+- model: auth.permission
+  pk: 42
+  fields: {name: Can delete permission, content_type: 2, codename: delete_permission}
+- model: auth.permission
+  pk: 43
+  fields: {name: Can add user, content_type: 4, codename: add_user}
+- model: auth.permission
+  pk: 44
+  fields: {name: Can change user, content_type: 4, codename: change_user}
+- model: auth.permission
+  pk: 45
+  fields: {name: Can delete user, content_type: 4, codename: delete_user}
+- model: auth.permission
+  pk: 46
+  fields: {name: Can add volunteer, content_type: 10, codename: add_volunteer}
+- model: auth.permission
+  pk: 47
+  fields: {name: Can change volunteer, content_type: 10, codename: change_volunteer}
+- model: auth.permission
+  pk: 48
+  fields: {name: Can delete volunteer, content_type: 10, codename: delete_volunteer}
+- model: auth.permission
+  pk: 49
+  fields: {name: Can add evacuee, content_type: 9, codename: add_evacuee}
+- model: auth.permission
+  pk: 50
+  fields: {name: Can change evacuee, content_type: 9, codename: change_evacuee}
+- model: auth.permission
+  pk: 51
+  fields: {name: Can delete evacuee, content_type: 9, codename: delete_evacuee}
+- model: auth.permission
+  pk: 52
+  fields: {name: Can add address, content_type: 11, codename: add_address}
+- model: auth.permission
+  pk: 53
+  fields: {name: Can change address, content_type: 11, codename: change_address}
+- model: auth.permission
+  pk: 54
+  fields: {name: Can delete address, content_type: 11, codename: delete_address}
+- model: auth.permission
+  pk: 55
+  fields: {name: Can add structure, content_type: 8, codename: add_structure}
+- model: auth.permission
+  pk: 56
+  fields: {name: Can change structure, content_type: 8, codename: change_structure}
+- model: auth.permission
+  pk: 57
+  fields: {name: Can delete structure, content_type: 8, codename: delete_structure}
+- model: auth.permission
+  pk: 58
+  fields: {name: Can add notification, content_type: 12, codename: add_notification}
+- model: auth.permission
+  pk: 59
+  fields: {name: Can change notification, content_type: 12, codename: change_notification}
+- model: auth.permission
+  pk: 60
+  fields: {name: Can delete notification, content_type: 12, codename: delete_notification}
+- model: auth.permission
+  pk: 61
+  fields: {name: Can add simple evacuee, content_type: 13, codename: add_simpleevacuee}
+- model: auth.permission
+  pk: 62
+  fields: {name: Can change simple evacuee, content_type: 13, codename: change_simpleevacuee}
+- model: auth.permission
+  pk: 63
+  fields: {name: Can delete simple evacuee, content_type: 13, codename: delete_simpleevacuee}
 - model: auth.group
   pk: 1
   fields:
@@ -134,7 +206,7 @@
   pk: 1
   fields:
     password: pbkdf2_sha256$30000$su2UlGzoKPGj$R024Onr+kJBFxGnGUUdLm06kj2WyAwOg/ezA+zJ23Ak=
-    last_login: 2016-10-30 03:29:53.843136+00:00
+    last_login: 2016-10-30 04:02:24.103087+00:00
     is_superuser: true
     username: Amministratore
     first_name: ''
@@ -144,6 +216,36 @@
     is_active: true
     date_joined: 2016-10-29 23:31:09+00:00
     groups: [1]
+    user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$30000$gSfMYkUzyOuK$REQ3XLN/LnQkI3/zNjXyMpSokdomQy+1AQsZZh+b/OY=
+    last_login: null
+    is_superuser: false
+    username: roberta.nari
+    first_name: Roberta
+    last_name: Nari
+    email: roberta.nari@example.org
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-30 04:03:43+00:00
+    groups: [2]
+    user_permissions: []
+- model: auth.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$30000$5mNi4bE6A4co$olIpBx64yR0dddAhrpvk1fP/fkzUB7auXpXAZtqEJqE=
+    last_login: null
+    is_superuser: false
+    username: carlo.gioacchino
+    first_name: Carlo
+    last_name: Gioacchino
+    email: carlo.gioacchino@example.org
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-30 04:11:06+00:00
+    groups: [3]
     user_permissions: []
 - model: xsenia.address
   pk: 1
@@ -163,16 +265,16 @@
     zip_code: '62100', country: Italia, latitude: 43.4329118, longitude: 13.470678}
 - model: xsenia.volunteer
   pk: 1
-  fields: {name: Carlo, surname: Gioacchino, fiscal_code: GIO039403930, note: null,
-    address: 1}
+  fields: {name: Carlo, surname: Gioacchino, fiscal_code: GIO039403930, note: '',
+    address: 1, user: 3}
 - model: xsenia.volunteer
   pk: 2
   fields: {name: Luca, surname: Piergiacomo, fiscal_code: LIO039403930, note: null,
-    address: 3}
+    address: 3, user: null}
 - model: xsenia.volunteer
   pk: 3
   fields: {name: Giancarlo, surname: Paolozzi, fiscal_code: GIP039403930, note: null,
-    address: 4}
+    address: 4, user: null}
 - model: xsenia.structure
   pk: 1
   fields: {name: Hotel Grandi, address: 1, description: Il nostro hotel puo' offrirvi
@@ -184,7 +286,7 @@
 - model: xsenia.structure
   pk: 3
   fields: {name: Casa privata, address: 3, description: Se avete bisogno contattatemi,
-    total_seats: 2, available_seats: 2, active: true, owner: 2}
+    total_seats: 2, available_seats: 1, active: true, owner: 2}
 - model: xsenia.structure
   pk: 4
   fields: {name: B&B, address: 4, description: Se avete bisogno contattatemi, total_seats: 4,
@@ -197,8 +299,8 @@
 - model: xsenia.evacuee
   pk: 2
   fields: {name: Roberta, surname: Nari, fiscal_code: RBT39490349, category: elder,
-    note: null, address: null, user: null, assigned_structure: 1, assigned_time: ! '2016-10-30
-      03:25:16.136752+00:00'}
+    note: '', address: null, user: 2, assigned_structure: 1, assigned_time: ! '2016-10-30
+      03:25:16+00:00'}
 - model: xsenia.evacuee
   pk: 3
   fields: {name: Giacomo, surname: Botticelli, fiscal_code: RBT39490349, category: adult,
@@ -207,8 +309,8 @@
 - model: xsenia.evacuee
   pk: 4
   fields: {name: Mario, surname: Rossi, fiscal_code: MR3483998994, category: adult,
-    note: '', address: 1, user: null, assigned_structure: 4, assigned_time: ! '2016-10-30
-      03:40:12.495495+00:00'}
+    note: '', address: 1, user: null, assigned_structure: 3, assigned_time: ! '2016-10-30
+      03:53:13.665939+00:00'}
 - model: xsenia.simpleevacuee
   pk: 1
   fields: {name: Giovanni, surname: Battisti, fiscal_code: RBT39490349, category: child,
