@@ -21,7 +21,8 @@ init:
 	${DCX} app django-admin loaddata fixtures.yaml
 
 dump:
-	${DCX} app django-admin dumpdata --format=yaml > fixtures.yaml
+	${DCX} app django-admin dumpdata --format=yaml > fixtures.yaml \
+		-e admin -e contenttypes -e sessions -e authtoken
 
 static:
 	mkdir -p static
