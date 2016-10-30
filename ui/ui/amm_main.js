@@ -3,8 +3,11 @@
 app.controller('AmmMainController', [ '$scope', '$http',
 	function($scope, $http) {
 
-		$scope.structuresData = [];
-		$scope.evacueesData = [];
+		$scope.structuresData = {
+			"completamente assegnate" : 0,
+			"parzialmente assegnate" : 0,
+			"libere" : 0
+		};
 
 		$scope.evacuessDict = {};
 		$scope.evacuessLabels = {};
@@ -37,10 +40,11 @@ app.controller('AmmMainController', [ '$scope', '$http',
 
 			if ($scope.evacuessLabels[0] != null && $scope.evacuessValues[0] != null) {
 				xenia.bar.render("bar-chart", $scope.evacuessLabels, $scope.evacuessValues);
-				//xenia.bar.render("pie-chart", $scope.evacuessLabels, [2, 22, 8, 2, 1, 6]);
 			}
+		}
 
-			
+		var processStructure = function (structures) {
+			$scope.structuresDict = {};
 
 		}
 		
@@ -51,7 +55,21 @@ app.controller('AmmMainController', [ '$scope', '$http',
 			};
 			$http(req).then(function(response) {
 				console.log(response);
-				$scope.structuresData = response.data;
+				for (var i = 0; i < response.data.length; i++) {
+			    	var s = response.data[i];
+			    	var diff = s.available_seats - s.total_seats;
+			    	if (diff == 0) {
+			    		$scope.structuresData["libere"] += 1;
+			    	} else if (diff == -s.total_seats) {
+			    		$scope.structuresData["completamente assegnate"] += 1;
+			    	} else {
+			    		$scope.structuresData["libere"] += 1;
+			    	}
+
+				}
+				xenia.pie.render("pie-chart",
+					Object.keys($scope.structuresData),	
+					Object.values($scope.structuresData));
 			}, function(response) {
 				console.error(response.data);
 			});
@@ -64,7 +82,6 @@ app.controller('AmmMainController', [ '$scope', '$http',
 			};
 			$http(req).then(function(response) {
 				console.log(response);
-				//$scope.evacueesData = response.data;
 				processEvacuees(response.data);
 			}, function(response) {
 				console.error(response.data);

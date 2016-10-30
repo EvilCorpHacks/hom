@@ -47,12 +47,14 @@ xenia.bar = {
 		var ctx = document.getElementById(dom);
 		var myChart = new Chart(ctx, {
 		    type: 'bar',
+		    responsive: true,
+    		maintainAspectRatio: false,
 		    data: {
 		        labels: labels,
 		        datasets: [{
 		            label: '#',
 		            backgroundColor: xenia.backgroundColors,
-		        	//borderColor: xenia.borderColors,
+		        	borderColor: xenia.borderColors,
 		            data: data,
 		            borderWidth: 1
 		        }]
