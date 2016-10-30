@@ -11,7 +11,7 @@ app.controller('AllViewMapController', function($http, $rootScope, $scope) {
   });
 
   // create the map (map container must be loaded in dom)
-  var map = L.map('map', {'minZoom': 9, 'maxZoom': 9}).setView(point, 9);
+  var map = L.map('map', {'minZoom': 10, 'maxZoom': 10}).setView(point, 10);
 
   function getRadius(magnitude) {
     if (magnitude >= 6.0) { return 160; }

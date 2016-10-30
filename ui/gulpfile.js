@@ -24,8 +24,8 @@ gulp.task('serve', ['index', 'partials', 'styles', 'scripts'], () => {
     server: {
       baseDir: [
         '/dist',
-        `/usr/local/lib/node_modules/${config.name}`,
-        '/code'],
+        '/code',
+        `/usr/local/lib/node_modules/${config.name}`],
       index: 'index.html' },
     host: '0.0.0.0',
     port: 8080,

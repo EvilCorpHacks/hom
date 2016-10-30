@@ -1,70 +1,75 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Starter Template - Materialize</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-  <link rel="stylesheet" href="css/main.css">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-
-<body>
-
-
-  <nav class="nav--main" role="navigation">
+<html lang="it" ng-app="app">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Xenia</title>
+    <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.css">
+    <link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/node_modules/angular-loading-bar/build/loading-bar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/ui/app.css">
+    <link rel="stylesheet" href="/ui/css/main.css">
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/materialize-css/dist/js/materialize.js"></script>
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/node_modules/satellizer/dist/satellizer.js"></script>
+    <script src="/node_modules/restangular/dist/restangular.js"></script>
+    <script src="/node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="/node_modules/chart.js/dist/Chart.js"></script>
+    <script src="/node_modules/angular-websocket/dist/angular-websocket.js"></script>
+    <script src="/node_modules/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+    <script src="/ui/app.js"></script>
+    <script src="/ui/landing.js"></script>
+    <script src="/ui/admin.js"></script>
+    <script src="/ui/vol_main.js"></script>
+    <script src="/ui/vol_create_structure.js"></script>
+    <script src="/ui/all_view_map.js"></script>
+    <script src="/ui/eva_main.js"></script>
+    <script src="/ui/eva_view_structure.js"></script>
+    <script src="/ui/amm_main.js"></script>
+    <script src="/ui/amm_assign_1_structure.js"></script>
+    <script src="/ui/chart/xenia.js"></script>
+    <script src="/ui/amm_assign_2_evacuees.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  <nav class="nav--main" role="navigation" ng-if="auth">
     <div class="row">
         <div class="col s9">
-          <a href="landing.html">Xenia</a>
+            <div class="nav-wrapper row">
+              <div class="col s2">
+              <a ui-sref="landing" href="landing.html" class="brand-logo">Xenia</a>
+              </div>
+              <div class="col s10">
+                <ul>
+                  <li ng-if="group=='Amministrazione'"><a  ui-sref="amm_main" href="#/amm_main">Dashboard</a></li>
+                  <li ng-if="group=='Volontari'"><a  ui-sref="vol_main" href="#/vol_main">Struttura</a></li>
+                  <li ng-if="group=='Sfollati'"><a  ui-sref="eva_main" href="#/eva_main">Il tuo gruppo</a></li>
+                  <li><a ui-sref="all_view_map" href="#/all_view_map">Mappa</a></li>
+                </ul>
+              </div>
+            </div>
         </div>
 
         <div class="col s3">
-          <i class="fa fa-twitter" aria-hidden="true"></i>
+            <div class="nav-wrapper">
+              <i class="fa fa-twitter" aria-hidden="true" ng-if="$state.current.name==&quot;all_view_map&quot;"></i><i class="fa fa-user" aria-hidden="true" ng-if="$state.current.name!=&quot;all_view_map&quot;"></i>
+                <ul class="right">
+                  <li><a ng-click="logout()" href="#/logout">Logout</a></li> <!-- solo se loggato -->
+                </ul>
+            </div>
         </div>
     </div>
   </nav>
 
-
-<!--
-  <div class="row row--main">
-
-    <main class="col s9 main">
-      MAPPPA QUIAAAAA
-    </main>
-
-    <aside class="col s3 side">
-      <div id="twitter">
-        <a class="twitter-timeline" href="https://twitter.com/INGVterremoti">
-          Tweets by @INGVterremoti
-        </a>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
-    </aside>
-
-  </div>
--->
-
-
-  <div class="row row--main" style="margin-bottom:0px !important">
-
-    <main class="col s9 main">
-      MAPPPA QUIAAAAA
-    </main>
-
-    <aside class="col s3 side">
-      <div id="twitter">
-        <a class="twitter-timeline" href="https://twitter.com/INGVterremoti">
-          Tweets by @INGVterremoti
-        </a>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
-    </aside>
-
-  </div>
-
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-  <script src="https://use.fontawesome.com/a1cc642d1f.js"></script>
-</body>
+    <div class="row" style="margin-bottom:0px !important">
+      <main class="col s12 main">
+        <!-- Main content-->
+        <div ui-view=""></div>
+      </main>
+    </div>
+  </body>
 </html>
