@@ -29,7 +29,7 @@ class StructureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Structure
         fields = ('id', 'name', 'description', 'total_seats',
-                  'available_seats', 'active', 'address')
+                  'available_seats', 'active', 'address', 'owner_id')
 
     def create(self, validated_data):
         address_data = validated_data.pop('address')
