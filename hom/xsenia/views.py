@@ -1,10 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.models import User, Group
 from .models import Structure, Volunteer, Evacuee, SimpleEvacuee, Notification
 from rest_framework import viewsets
-from xsenia.serializers import StructureSerializer, VolunteerSerializer, EvacueeSerializer, NotificationSerializer
+from xsenia.serializers import StructureSerializer, VolunteerSerializer, EvacueeSerializer, NotificationSerializer, UserSerializer, GroupSerializer
 from django.views.decorators.csrf import csrf_exempt
 import json
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
 
 
 # Create your views here.
@@ -50,4 +67,3 @@ def assign_view(request):
     except Exception:
         res.status_code = 400
     return res
-
