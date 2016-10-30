@@ -1,5 +1,4 @@
 app.controller('AllViewMapController', function($http, $rootScope, $scope) {
-  // TODO
   let point = [43.296292, 13.574712];
 
   var myIcon = new L.Icon({
@@ -30,8 +29,7 @@ app.controller('AllViewMapController', function($http, $rootScope, $scope) {
     return 'blue';
   }
 
-  // return the center of the biggest earthquake
-  function get() {
+  function getBiggestEarthquake() {
   }
 
   // add open street map layer to map
@@ -40,14 +38,20 @@ app.controller('AllViewMapController', function($http, $rootScope, $scope) {
                    'OpenStreetMap</a> contributors'
   }).addTo(map);
 
+  let markers = [];
   $http.get('/api/structures').success(function(data) {
     data.forEach(function(p) {
       let m = L.marker([p.address.latitude, p.address.longitude], {icon: myIcon}).addTo(map);
-      let popupContent = `
-        <a href="http://google.com/">
-          ${p.name}
-        </a>`;
-      m.bindPopup(popupContent).openPopup();
+
+      let popupContent = `${p.name}`;
+      m.bindPopup(popupContent);
+      m.on('mouseover', function (e) {
+        this.openPopup();
+      });
+      m.on('mouseout', function (e) {
+        this.closePopup();
+      });
+
     });
   });
 
