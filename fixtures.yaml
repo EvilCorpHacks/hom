@@ -134,7 +134,7 @@
   pk: 1
   fields:
     password: pbkdf2_sha256$30000$su2UlGzoKPGj$R024Onr+kJBFxGnGUUdLm06kj2WyAwOg/ezA+zJ23Ak=
-    last_login: 2016-10-30 02:13:20+00:00
+    last_login: 2016-10-30 03:29:53.843136+00:00
     is_superuser: true
     username: Amministratore
     first_name: ''
@@ -176,7 +176,7 @@
 - model: xsenia.structure
   pk: 1
   fields: {name: Hotel Grandi, address: 1, description: Il nostro hotel puo' offrirvi
-      alcune stanze, total_seats: 8, available_seats: 8, active: true, owner: 1}
+      alcune stanze, total_seats: 8, available_seats: 0, active: true, owner: 1}
 - model: xsenia.structure
   pk: 2
   fields: {name: Hotel Piccioli, address: 2, description: Se avete bisogno contattateci,
@@ -188,19 +188,27 @@
 - model: xsenia.structure
   pk: 4
   fields: {name: B&B, address: 4, description: Se avete bisogno contattatemi, total_seats: 4,
-    available_seats: 4, active: true, owner: 3}
+    available_seats: 3, active: true, owner: 3}
 - model: xsenia.evacuee
   pk: 1
   fields: {name: Franco, surname: Battisti, fiscal_code: FBT39490349, category: adult,
-    note: null, address: null, user: null, assigned_structure: null, assigned_time: null}
+    note: null, address: null, user: null, assigned_structure: 1, assigned_time: ! '2016-10-30
+      03:06:11.783657+00:00'}
 - model: xsenia.evacuee
   pk: 2
   fields: {name: Roberta, surname: Nari, fiscal_code: RBT39490349, category: elder,
-    note: null, address: null, user: null, assigned_structure: null, assigned_time: null}
+    note: null, address: null, user: null, assigned_structure: 1, assigned_time: ! '2016-10-30
+      03:25:16.136752+00:00'}
 - model: xsenia.evacuee
   pk: 3
   fields: {name: Giacomo, surname: Botticelli, fiscal_code: RBT39490349, category: adult,
-    note: null, address: null, user: null, assigned_structure: null, assigned_time: null}
+    note: null, address: null, user: null, assigned_structure: 1, assigned_time: ! '2016-10-30
+      03:10:40.576524+00:00'}
+- model: xsenia.evacuee
+  pk: 4
+  fields: {name: Mario, surname: Rossi, fiscal_code: MR3483998994, category: adult,
+    note: '', address: 1, user: null, assigned_structure: 4, assigned_time: ! '2016-10-30
+      03:40:12.495495+00:00'}
 - model: xsenia.simpleevacuee
   pk: 1
   fields: {name: Giovanni, surname: Battisti, fiscal_code: RBT39490349, category: child,
