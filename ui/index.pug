@@ -1,0 +1,49 @@
+doctype html
+html(lang='it', ng-app='app')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title HOM
+    link(rel='stylesheet', href='/node_modules/materialize-css/dist/css/materialize.css')
+    link(rel='stylesheet', href='/node_modules/leaflet/dist/leaflet.css')
+    link(rel='stylesheet', href='/node_modules/font-awesome/css/font-awesome.css')
+    link(rel='stylesheet', href='/node_modules/angular-loading-bar/build/loading-bar.css')
+    link(rel='stylesheet', href='/ui/app.css')
+    script(src='/node_modules/jquery/dist/jquery.js')
+    script(src='/node_modules/materialize-css/dist/js/materialize.js')
+    script(src='/node_modules/angular/angular.js')
+    script(src='/node_modules/angular-ui-router/release/angular-ui-router.js')
+    script(src='/node_modules/satellizer/dist/satellizer.js')
+    script(src='/node_modules/restangular/dist/restangular.js')
+    script(src='/node_modules/leaflet/dist/leaflet.js')
+    script(src='/node_modules/chart.js/dist/Chart.js')
+    script(src='/node_modules/angular-websocket/dist/angular-websocket.js')
+    script(src='/node_modules/angular-loading-bar/build/loading-bar.js')
+    script(src='/node_modules/lodash/lodash.js')
+    script(src='/ui/app.js')
+    script(src='/ui/landing.js')
+    script(src='/ui/admin.js')
+    script(src='/ui/vol_main.js')
+    script(src='/ui/vol_create_structure.js')
+    script(src='/ui/all_view_map.js')
+    script(src='/ui/eva_main.js')
+    script(src='/ui/eva_view_structure.js')
+    script(src='/ui/amm_main.js')
+    script(src='/ui/amm_assign_1_structure.js')
+    script(src='/ui/chart/xenia.js')
+    script(src='/ui/amm_assign_2_evacuees.js')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  body
+    nav.nav--main(role='navigation')
+      .row
+        .col.s9
+          a(href='landing.html') Xenia
+        .col.s3
+          i.fa.fa-twitter(aria-hidden='true' ng-if='$state.current.name=="all_view_map"')
+          i.fa.fa-user(aria-hidden='true' ng-if='$state.current.name!="all_view_map"')
+
+
+    .row(style='margin-bottom:0px !important')
+      main.col.s12.main
+        // Main content
+        div(ui-view='')
+

@@ -36,12 +36,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-  <nav class="nav--main" role="navigation" ng-if="auth">
+  <nav class="nav--main" role="navigation">
     <div class="row">
         <div class="col s9">
             <div class="nav-wrapper row">
               <div class="col s2">
-              <a ui-sref="landing" href="landing.html" class="brand-logo">Xenia</a>
+               <a ui-sref="landing" href="landing.html" class="brand-logo">Xenia</a>
               </div>
               <div class="col s10">
                 <ul>
@@ -57,9 +57,11 @@
 
         <div class="col s3">
             <div class="nav-wrapper">
-              <i class="fa fa-twitter" aria-hidden="true" ng-if="$state.current.name==&quot;all_view_map&quot;"></i><i class="fa fa-user" aria-hidden="true" ng-if="$state.current.name!=&quot;all_view_map&quot;"></i>
+              <!--<i class="fa fa-twitter" aria-hidden="true" ng-if="$state.current.name==&quot;all_view_map&quot;"></i>
+              <i class="fa fa-user" aria-hidden="true" ng-if="$state.current.name!=&quot;all_view_map&quot;"></i>-->
                 <ul class="right">
-                  <li><a ng-click="logout()" href="#/logout">Logout</a></li> <!-- solo se loggato -->
+                  <li ng-if="auth === false"><a href="#/landing">Login</a></li> <!-- solo se loggato -->
+                   <li ng-if="auth === true"><a n ng-click="logout()" href="#/logout">Logout</a></li> <!-- solo se loggato -->
                 </ul>
             </div>
         </div>
