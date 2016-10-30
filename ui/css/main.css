@@ -41,3 +41,17 @@ nav .fa-twitter{
     font-size: 100px;
     color: #27AC24
 }
+
+.evacuee .card{
+    border-top: blue 3px solid
+}
+
+.evacuee .s2 i{
+    font-size: 100px;
+    color: blue;
+}
+
+.evacuee .card .s3 i{
+    font-size: 80px;
+    color: blue
+}

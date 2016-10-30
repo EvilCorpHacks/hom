@@ -48,8 +48,11 @@ class Structure(Model):
     owner = models.ForeignKey(Volunteer, blank=True, null=True)
 
     def update_availability(self):
-        self.available_seats = self.total_seats - reduce(
-            lambda n, l: n + l.group_size, self.evacuees)
+        occupied_sits = 0
+        for evacuee in self.evacuees.all():
+            occupied_sits += evacuee.group_size
+        self.available_seats = self.total_seats - occupied_sits
+        self.save()
 
 
 class Evacuee(Model):
@@ -71,12 +74,13 @@ class Evacuee(Model):
 
     @property
     def group_size(self):
-        return 1 + len(self.group)
+        return 1 + self.group.count()
 
     def assign_structure(self, structure):
         self.assigned_structure = structure
         self.assigned_time = datetime.now()
         self.save()
+        structure.update_availability()
 
 
 class SimpleEvacuee(Model):

@@ -47,7 +47,7 @@ app.controller('AmmMainController', [ '$scope', '$http',
 			$scope.structuresDict = {};
 
 		}
-		
+
 		$scope.getStructures = function () {
 			var req = {
 				method : 'GET',
@@ -63,12 +63,12 @@ app.controller('AmmMainController', [ '$scope', '$http',
 			    	} else if (diff == -s.total_seats) {
 			    		$scope.structuresData["completamente assegnate"] += 1;
 			    	} else {
-			    		$scope.structuresData["libere"] += 1;
+			    		$scope.structuresData["parzialmente assegnate"] += 1;
 			    	}
 
 				}
 				xenia.pie.render("pie-chart",
-					Object.keys($scope.structuresData),	
+					Object.keys($scope.structuresData),
 					Object.values($scope.structuresData));
 			}, function(response) {
 				console.error(response.data);
@@ -91,6 +91,6 @@ app.controller('AmmMainController', [ '$scope', '$http',
 		$scope.getEvacuees();
 		$scope.getStructures();
 
-		
+
 	} ]);
 
