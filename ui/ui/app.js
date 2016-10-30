@@ -94,6 +94,7 @@ app.config(function(
 
 app.run(function($rootScope, $auth, $http, $state) {
 
+  $('.parallax').parallax();
   $rootScope.$state = $state;
   $rootScope.auth = false;
 
