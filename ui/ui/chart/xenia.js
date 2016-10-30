@@ -52,7 +52,7 @@ xenia.bar = {
 		    data: {
 		        labels: labels,
 		        datasets: [{
-		            label: '#',
+		            label: 'distribuzione categorie sociali',
 		            backgroundColor: xenia.backgroundColors,
 		        	borderColor: xenia.borderColors,
 		            data: data,
