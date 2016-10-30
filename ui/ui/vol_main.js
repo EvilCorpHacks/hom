@@ -1,5 +1,5 @@
 app.controller('VolMainController', function($scope, $http) {
-  $http.get('/api/ui/data/google-places.json').success(function(data) {
-    // TODO
+  $http.get('/api/structures/?user=1').success(function(data) {
+    $scope.structures = data
   });
 });

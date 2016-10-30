@@ -1,0 +1,23 @@
+<main class="col s9 main">
+    <div class="row">
+        <fieldset id="structure">
+            <input type="text" name="name" ng-model="structure.name" />
+            <input type="number" name="total_seats"
+                                 ng-model="structure.total_seats">
+            <input type="number" name="available_seats"
+                                 ng-model="structure.available_seats">
+            <input type="hidden" value="1" name="owner_id"
+                                 ng-model="structure.owner_id">
+        </fieldset>
+        <fieldset id="address">
+            <input type="phone" name="phone" ng-model="structure.address.phone" />
+            <input type="text" name="text" ng-model="structure.address.text" />
+            <input type="text" name="zip_code" ng-model="structure.address.zip_code" />
+            <input type="text" name="city" ng-model="structure.address.city" />
+            <input type="text" name="country" ng-model="structure.address.country" />
+            <input type="text" name="state" ng-model="structure.address.state" />
+        </fieldset>
+        <button type="button" class="btn" value="Aggiungi" ng-click="submit()">
+    </div>
+</main>
+
