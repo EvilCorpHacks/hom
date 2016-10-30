@@ -41,13 +41,13 @@ class StructureViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Optionally restricts the returned purchases to a given user,
+        Optionally restricts the returned purchases to a given structure
         by filtering against a `user` id query parameter in the URL.
         """
         queryset = Structure.objects.all()
         user = self.request.query_params.get('user', None)
         if user is not None:
-            queryset = queryset.filter(structure__user=user)
+            queryset = queryset.filter(owner_id=user)
         return queryset
 
 
@@ -64,6 +64,17 @@ class EvacueeViewSet(viewsets.ModelViewSet):
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given structure
+        by filtering against a `structure` id query parameter in the URL.
+        """
+        queryset = Notification.objects.all()
+        user = self.request.query_params.get('user', None)
+        if user is not None:
+            queryset = queryset.filter(user_id=user)
+        return queryset
 
 
 @csrf_exempt

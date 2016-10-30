@@ -9,6 +9,18 @@ from django.db.models import Model, fields
 
 API_KEY = 'AIzaSyChDSGvnNPK8WVAE66y_X-EJgvgcqg5GMg'
 
+class Notification(Model):
+    time = fields.DateTimeField(blank=True, null=True)
+    message = fields.TextField(blank=True, null=True)
+    readed = fields.BooleanField(default=False)
+    kind = fields.CharField(
+        max_length=50, blank=True, null=True)  # Expected: hazard, assignment
+    user = models.ForeignKey(User, blank=True, null=True)
+
+    def mark_as_read(self):
+        self.readed = True
+        self.save()
+
 
 class Address(Model):
     text = fields.CharField(max_length=50, blank=True, null=True)
@@ -36,6 +48,8 @@ class Volunteer(Model):
     fiscal_code = fields.CharField(max_length=20, blank=True, null=True)
     note = fields.CharField(max_length=200, blank=True, null=True)
     address = models.ForeignKey(Address, blank=True, null=True)
+    user = models.ForeignKey(
+        User, related_name='volunteer_profile', blank=True, null=True)
 
 
 class Structure(Model):
@@ -54,6 +68,23 @@ class Structure(Model):
         self.available_seats = self.total_seats - occupied_sits
         self.save()
 
+    def notify_assignation(self, evacuee):
+        if self.owner.user and evacuee.user:
+            Notification.objects.create(
+                time=datetime.now(),
+                kind='assignation',
+                message='Struttura "{}" assegnata a "{} {}"'.format(self.name,
+                    evacuee.name, evacuee.surname),
+                user=self.owner.user
+            )
+            Notification.objects.create(
+                time=datetime.now(),
+                kind='assignation',
+                message='Assegnata struttura "{}" da "{} {}"'.format(self.name,
+                    self.owner.name, self.owner.surname),
+                user=evacuee.user
+            )
+
 
 class Evacuee(Model):
     name = fields.CharField(max_length=50, blank=True, null=True)
@@ -63,7 +94,7 @@ class Evacuee(Model):
     note = fields.CharField(max_length=200, blank=True, null=True)
     address = models.ForeignKey(Address, blank=True, null=True)
     user = models.ForeignKey(
-        User, related_name='profile', blank=True, null=True)
+        User, related_name='evacuee_profile', blank=True, null=True)
     assigned_structure = models.ForeignKey(
         Structure, related_name='evacuees', blank=True, null=True)
     assigned_time = fields.DateTimeField(blank=True, null=True)
@@ -81,6 +112,7 @@ class Evacuee(Model):
         self.assigned_time = datetime.now()
         self.save()
         structure.update_availability()
+        structure.notify_assignation(self)
 
 
 class SimpleEvacuee(Model):
@@ -94,14 +126,3 @@ class SimpleEvacuee(Model):
     address = models.ForeignKey(Address, blank=True, null=True)
 
 
-class Notification(Model):
-    time = fields.DateTimeField(blank=True, null=True)
-    message = fields.TextField(blank=True, null=True)
-    readed = fields.BooleanField(default=False)
-    kind = fields.CharField(
-        max_length=50, blank=True, null=True)  # Expected: hazard, assignment
-    user = models.ForeignKey(User, blank=True, null=True)
-
-    def mark_as_read(self):
-        self.readed = True
-        self.save()

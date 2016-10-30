@@ -13,7 +13,7 @@ app.config(function(
     $authProvider) {
 
   // Performance
-  $compileProvider.debugInfoEnabled(false);
+  //$compileProvider.debugInfoEnabled(false);
 
   // Load Materialize components
   $('.modal-trigger').leanModal();
@@ -27,7 +27,7 @@ app.config(function(
 
   // URLs
   $urlRouterProvider
-    .otherwise('admin');
+    .otherwise('landing');
 
   $stateProvider
     .state('admin', {
@@ -84,49 +84,53 @@ app.config(function(
       controller: 'AmmAssign2EvacueesController'
     })
 
-    .state('main', {
-      url: '/',
-      template: '',
+    .state('landing', {
+      url: '/landing',
+      templateUrl: '/ui/landing.html',
+      controller: 'LandingController'
     });
 });
 
 
-app.run(function($rootScope, $auth, $state) {
+app.run(function($rootScope, $auth, $http, $state) {
 
   $rootScope.$state = $state;
+  $rootScope.auth = false;
 
   $rootScope.login = function() {
-    $auth.login({
-      username: $rootScope.username,
-      password: $rootScope.password
+    let x = $auth.login({
+      username: $('input[name=username]').val(),
+      password: $('input[name=password]').val()
     });
 
-    if ($rootScope.isAuth()) {
-      return $state.go('admin');
-    } else {
-      return $rootScope.msg = 'Error';
-    }
+    $http.get('/api/users?user=' + $('input[name=username]').val()).success(function (data) {
+      console.log(data);
+      $rootScope.user = data[0];
+      $rootScope.group = data[0].groups[0].name;
+
+      $rootScope.auth = true;
+      if ($rootScope.user.groups[0].name == 'Amministrazione') {
+        return $state.go('amm_main');
+      } else if ($rootScope.user.groups[0].name == 'Sfollati') {
+        return $state.go('eva_main');
+      } else if ($rootScope.user.groups[0].name == 'Volontari') {
+        return $state.go('vol_main');
+      }
+    });
   };
 
   $rootScope.logout = function() {
     $auth.logout();
-    //if not $auth.isAuthenticated()
-    if (!$rootScope.isAuth()) {
-      return $state.go('admin');
-    }
+    $rootScope.auth = false;
+    $rootScope.user = null;
+    $rootScope.group = null;
+    $state.go('landing');
   };
 
-  $rootScope.isAuth = function() {
-    //$auth.isAuthenticated()
-    if ($auth.getToken()) {
-      return true;
-    }
-  };
-
-  $rootScope.goHome = function() {
-    $('ul.tabs').tabs('select_tab', 'tab4');
-    return $state.go('admin');
-  };
+  //$rootScope.goHome = function() {
+    //$('ul.tabs').tabs('select_tab', 'tab4');
+    //return $state.go('landing');
+  //};
 
   // return $state.go('admin');
 });
