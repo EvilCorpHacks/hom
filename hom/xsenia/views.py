@@ -47,7 +47,7 @@ class StructureViewSet(viewsets.ModelViewSet):
         queryset = Structure.objects.all()
         user = self.request.query_params.get('user', None)
         if user is not None:
-            queryset = queryset.filter(structure__user=user)
+            queryset = queryset.filter(owner_id=user)
         return queryset
 
 
