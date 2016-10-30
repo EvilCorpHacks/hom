@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Structure, Volunteer, Evacuee, SimpleEvacuee
+from .models import Structure, Volunteer, Evacuee, SimpleEvacuee, Notification
 from rest_framework import viewsets
-from xsenia.serializers import StructureSerializer, VolunteerSerializer, EvacueeSerializer
+from xsenia.serializers import StructureSerializer, VolunteerSerializer, EvacueeSerializer, NotificationSerializer
 
 
 # Create your views here.
@@ -29,3 +29,7 @@ class VolunteerViewSet(viewsets.ModelViewSet):
 class EvacueeViewSet(viewsets.ModelViewSet):
     queryset = Evacuee.objects.all()
     serializer_class = EvacueeSerializer
+
+class NotificationViewSet(viewsets.ModelViewSet):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer

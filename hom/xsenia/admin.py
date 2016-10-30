@@ -17,4 +17,7 @@ class SimpleEvacueeAdmin(admin.ModelAdmin):
 @admin.register(Volunteer)
 class VolunteerAdmin(admin.ModelAdmin):
     pass
+@admin.register(Notification)
+class NotificationAdmin(admin.ModelAdmin):
+    pass
 

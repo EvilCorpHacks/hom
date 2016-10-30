@@ -1,4 +1,4 @@
-from .models import Address, Structure, Volunteer, Evacuee, SimpleEvacuee
+from .models import Address, Structure, Volunteer, Evacuee, SimpleEvacuee, Notification
 from rest_framework import serializers
 
 
@@ -59,3 +59,8 @@ class EvacueeSerializer(serializers.HyperlinkedModelSerializer):
             item['leader'] = evacuee
             group.append(SimpleEvacuee.objects.create(**item))
         return evacuee
+
+class NotificationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ('time', 'message', 'readed', 'kind', 'user_id')

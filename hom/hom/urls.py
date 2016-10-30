@@ -23,6 +23,7 @@ router = routers.DefaultRouter()
 router.register(r'structures', xsenia.views.StructureViewSet)
 router.register(r'volunteers', xsenia.views.VolunteerViewSet)
 router.register(r'evacuees', xsenia.views.EvacueeViewSet)
+router.register(r'notifications', xsenia.views.NotificationViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

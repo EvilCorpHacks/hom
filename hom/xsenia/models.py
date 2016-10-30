@@ -94,7 +94,7 @@ class Notification(Model):
     time = fields.DateTimeField(blank=True, null=True)
     message = fields.TextField(blank=True, null=True)
     readed = fields.BooleanField(default=False)
-    type = fields.CharField(
+    kind = fields.CharField(
         max_length=50, blank=True, null=True)  # Expected: hazard, assignment
     user = models.ForeignKey(User, blank=True, null=True)
 
