@@ -9,3 +9,5 @@ Tecnologie principali:
 - OpenStreetMap
 - Leaflet
 - Chart.js
+- Feed INGV
+- nginx
