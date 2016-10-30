@@ -36,6 +36,8 @@ class Volunteer(Model):
     fiscal_code = fields.CharField(max_length=20, blank=True, null=True)
     note = fields.CharField(max_length=200, blank=True, null=True)
     address = models.ForeignKey(Address, blank=True, null=True)
+    user = models.ForeignKey(
+        User, related_name='volunteer_profile', blank=True, null=True)
 
 
 class Structure(Model):
@@ -63,7 +65,7 @@ class Evacuee(Model):
     note = fields.CharField(max_length=200, blank=True, null=True)
     address = models.ForeignKey(Address, blank=True, null=True)
     user = models.ForeignKey(
-        User, related_name='profile', blank=True, null=True)
+        User, related_name='evacuee_profile', blank=True, null=True)
     assigned_structure = models.ForeignKey(
         Structure, related_name='evacuees', blank=True, null=True)
     assigned_time = fields.DateTimeField(blank=True, null=True)
