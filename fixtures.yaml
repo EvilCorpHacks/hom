@@ -206,7 +206,7 @@
   pk: 1
   fields:
     password: pbkdf2_sha256$30000$su2UlGzoKPGj$R024Onr+kJBFxGnGUUdLm06kj2WyAwOg/ezA+zJ23Ak=
-    last_login: 2016-10-30 04:02:24.103087+00:00
+    last_login: 2016-10-30 04:16:50.771694+00:00
     is_superuser: true
     username: Amministratore
     first_name: ''
@@ -247,6 +247,81 @@
     date_joined: 2016-10-30 04:11:06+00:00
     groups: [3]
     user_permissions: []
+- model: auth.user
+  pk: 4
+  fields:
+    password: pbkdf2_sha256$30000$LGAPJMZeLHww$WMcEL6xiiab9az/4kb8QvwrrSK08Y61Z+tTs0UfTL3Y=
+    last_login: null
+    is_superuser: false
+    username: luca.piergiacomo
+    first_name: Luca
+    last_name: Piergiacomo
+    email: luca.piergiacomo@example.org
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-30 04:45:57+00:00
+    groups: [3]
+    user_permissions: []
+- model: auth.user
+  pk: 5
+  fields:
+    password: pbkdf2_sha256$30000$6plbHJus0qGW$wpM/CcYOTC+isfGSf6+3Vn76tde7GTQas1wmTo4YNlI=
+    last_login: null
+    is_superuser: false
+    username: giancarlo.paolozzi
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-30 04:47:21+00:00
+    groups: [3]
+    user_permissions: []
+- model: auth.user
+  pk: 6
+  fields:
+    password: pbkdf2_sha256$30000$2lNbHoxBr2cJ$kiHYi9USWZWSJmsDm3jXnLbTidOXPePN0ca24+XaqJU=
+    last_login: null
+    is_superuser: false
+    username: mario.rossi
+    first_name: Mario
+    last_name: Rossi
+    email: mario.rossi@example.org
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-30 04:47:56+00:00
+    groups: [2]
+    user_permissions: []
+- model: auth.user
+  pk: 7
+  fields:
+    password: pbkdf2_sha256$30000$6pIUSA0bTA3N$R4loTYdPmJ6MfzrH9tJyNqpcetUUNI+tIhY+n+O4i2w=
+    last_login: null
+    is_superuser: false
+    username: giacomo.botticelli
+    first_name: Giacomo
+    last_name: Botticelli
+    email: giacomo.botticelli@example.org
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-30 04:49:22+00:00
+    groups: [2]
+    user_permissions: []
+- model: auth.user
+  pk: 8
+  fields:
+    password: pbkdf2_sha256$30000$VITSOzXwAM4w$fY2Qj+nUBUeM5WbqnfgSuCrZNc67gvkgTsVhVgFxYtI=
+    last_login: null
+    is_superuser: false
+    username: franco.battisti
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2016-10-30 04:50:11+00:00
+    groups: [2]
+    user_permissions: []
 - model: xsenia.address
   pk: 1
   fields: {text: Via Due Fonti 45, phone: '3333334521', city: Macerata, state: MC,
@@ -269,12 +344,12 @@
     address: 1, user: 3}
 - model: xsenia.volunteer
   pk: 2
-  fields: {name: Luca, surname: Piergiacomo, fiscal_code: LIO039403930, note: null,
-    address: 3, user: null}
+  fields: {name: Luca, surname: Piergiacomo, fiscal_code: LIO039403930, note: '',
+    address: 3, user: 4}
 - model: xsenia.volunteer
   pk: 3
-  fields: {name: Giancarlo, surname: Paolozzi, fiscal_code: GIP039403930, note: null,
-    address: 4, user: null}
+  fields: {name: Giancarlo, surname: Paolozzi, fiscal_code: GIP039403930, note: '',
+    address: 4, user: 5}
 - model: xsenia.structure
   pk: 1
   fields: {name: Hotel Grandi, address: 1, description: Il nostro hotel puo' offrirvi
@@ -294,8 +369,8 @@
 - model: xsenia.evacuee
   pk: 1
   fields: {name: Franco, surname: Battisti, fiscal_code: FBT39490349, category: adult,
-    note: null, address: null, user: null, assigned_structure: 1, assigned_time: ! '2016-10-30
-      03:06:11.783657+00:00'}
+    note: '', address: null, user: 8, assigned_structure: 1, assigned_time: ! '2016-10-30
+      03:06:11+00:00'}
 - model: xsenia.evacuee
   pk: 2
   fields: {name: Roberta, surname: Nari, fiscal_code: RBT39490349, category: elder,
@@ -304,13 +379,13 @@
 - model: xsenia.evacuee
   pk: 3
   fields: {name: Giacomo, surname: Botticelli, fiscal_code: RBT39490349, category: adult,
-    note: null, address: null, user: null, assigned_structure: 1, assigned_time: ! '2016-10-30
-      03:10:40.576524+00:00'}
+    note: '', address: null, user: 7, assigned_structure: 1, assigned_time: ! '2016-10-30
+      03:10:40+00:00'}
 - model: xsenia.evacuee
   pk: 4
   fields: {name: Mario, surname: Rossi, fiscal_code: MR3483998994, category: adult,
-    note: '', address: 1, user: null, assigned_structure: 3, assigned_time: ! '2016-10-30
-      03:53:13.665939+00:00'}
+    note: '', address: 1, user: 6, assigned_structure: 3, assigned_time: ! '2016-10-30
+      03:53:13+00:00'}
 - model: xsenia.simpleevacuee
   pk: 1
   fields: {name: Giovanni, surname: Battisti, fiscal_code: RBT39490349, category: child,
