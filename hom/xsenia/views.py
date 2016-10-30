@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .models import Structure, Volunteer, Evacuee, SimpleEvacuee, Notification
 from rest_framework import viewsets
 from xsenia.serializers import StructureSerializer, VolunteerSerializer, EvacueeSerializer, NotificationSerializer
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 # Create your views here.
@@ -30,6 +33,21 @@ class EvacueeViewSet(viewsets.ModelViewSet):
     queryset = Evacuee.objects.all()
     serializer_class = EvacueeSerializer
 
+
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
+
+
+@csrf_exempt
+def assign_view(request):
+    res = HttpResponse()
+    try:
+        data = json.loads(request.body.decode('utf8'))
+        structure = Structure.objects.get(pk=data['structure_id'])
+        Evacuee.objects.get(pk=data['evacuee_id']).assign_structure(structure)
+        res.status_code = 200
+    except Exception:
+        res.status_code = 400
+    return res
+

@@ -43,13 +43,12 @@ class SimpleEvacueeSerializer(serializers.HyperlinkedModelSerializer):
         model = SimpleEvacuee
         fields = ('name', 'surname', 'fiscal_code', 'category')
 
-
 class EvacueeSerializer(serializers.HyperlinkedModelSerializer):
     group = SimpleEvacueeSerializer(many=True)
 
     class Meta:
         model = Evacuee
-        fields = ('name', 'surname', 'fiscal_code', 'category', 'group')
+        fields = ('id', 'name', 'surname', 'fiscal_code', 'category', 'group')
 
     def create(self, validated_data):
         group_list = validated_data.pop('group')

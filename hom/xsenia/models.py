@@ -74,7 +74,7 @@ class Evacuee(Model):
         return 1 + len(self.group)
 
     def assign_structure(self, structure):
-        self.assign_structure = structure
+        self.assigned_structure = structure
         self.assigned_time = datetime.now()
         self.save()
 

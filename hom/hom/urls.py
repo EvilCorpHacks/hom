@@ -27,6 +27,7 @@ router.register(r'notifications', xsenia.views.NotificationViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/assign', xsenia.views.assign_view),
     url(r'^api/', include(router.urls)),
     url(r'^api-token-auth/', rest_framework_jwt.views.obtain_jwt_token),
 ]
