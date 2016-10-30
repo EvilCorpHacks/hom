@@ -44,7 +44,7 @@ class StructureViewSet(viewsets.ModelViewSet):
         Optionally restricts the returned purchases to a given user,
         by filtering against a `user` id query parameter in the URL.
         """
-        queryset = self.queryset
+        queryset = Structure.objects.all()
         user = self.request.query_params.get('user', None)
         if user is not None:
             queryset = queryset.filter(structure__user=user)
