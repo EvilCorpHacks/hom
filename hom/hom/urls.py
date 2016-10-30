@@ -20,6 +20,9 @@ import xsenia.views
 import rest_framework_jwt.views
 
 router = routers.DefaultRouter()
+router.register(r'users', xsenia.views.UserViewSet)
+router.register(r'groups', xsenia.views.GroupViewSet)
+router.register(r'structures', xsenia.views.StructureViewSet)
 router.register(r'structures', xsenia.views.StructureViewSet)
 router.register(r'volunteers', xsenia.views.VolunteerViewSet)
 router.register(r'evacuees', xsenia.views.EvacueeViewSet)

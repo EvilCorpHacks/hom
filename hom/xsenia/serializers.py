@@ -1,12 +1,26 @@
-from .models import Address, Structure, Volunteer, Evacuee, SimpleEvacuee, Notification
+from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from .models import Address, Structure, Volunteer, Evacuee, SimpleEvacuee, Notification
+
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('id', 'name')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    groups = GroupSerializer(many=True)
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'groups')
 
 
 class AddressSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Address
-        fields = ('text', 'phone', 'city', 'state', 'zip_code', 'country',
-                  'latitude', 'longitude')
+        fields = ('id', 'text', 'phone', 'city', 'state', 'zip_code',
+                  'country', 'latitude', 'longitude')
 
 
 class StructureSerializer(serializers.HyperlinkedModelSerializer):
@@ -14,8 +28,8 @@ class StructureSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Structure
-        fields = ('name', 'description', 'total_seats', 'available_seats',
-                  'active', 'address')
+        fields = ('id', 'name', 'description', 'total_seats',
+                  'available_seats', 'active', 'address')
 
     def create(self, validated_data):
         address_data = validated_data.pop('address')
@@ -29,7 +43,7 @@ class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Volunteer
-        fields = ('name', 'surname', 'fiscal_code', 'note', 'address')
+        fields = ('id', 'name', 'surname', 'fiscal_code', 'note', 'address')
 
     def create(self, validated_data):
         address_data = validated_data.pop('address')
@@ -41,7 +55,8 @@ class VolunteerSerializer(serializers.HyperlinkedModelSerializer):
 class SimpleEvacueeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SimpleEvacuee
-        fields = ('name', 'surname', 'fiscal_code', 'category')
+        fields = ('id', 'name', 'surname', 'fiscal_code', 'category')
+
 
 class EvacueeSerializer(serializers.HyperlinkedModelSerializer):
     group = SimpleEvacueeSerializer(many=True)
@@ -59,7 +74,8 @@ class EvacueeSerializer(serializers.HyperlinkedModelSerializer):
             group.append(SimpleEvacuee.objects.create(**item))
         return evacuee
 
+
 class NotificationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Notification
-        fields = ('time', 'message', 'readed', 'kind', 'user_id')
+        fields = ('id', 'time', 'message', 'readed', 'kind', 'user_id')
