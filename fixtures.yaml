@@ -115,11 +115,26 @@
 - model: auth.permission
   pk: 39
   fields: {name: Can delete structure, content_type: 13, codename: delete_structure}
+- model: auth.group
+  pk: 1
+  fields:
+    name: Amministrazione
+    permissions: []
+- model: auth.group
+  pk: 2
+  fields:
+    name: Sfollati
+    permissions: []
+- model: auth.group
+  pk: 3
+  fields:
+    name: Volontari
+    permissions: []
 - model: auth.user
   pk: 1
   fields:
     password: pbkdf2_sha256$30000$su2UlGzoKPGj$R024Onr+kJBFxGnGUUdLm06kj2WyAwOg/ezA+zJ23Ak=
-    last_login: null
+    last_login: 2016-10-30 02:13:20+00:00
     is_superuser: true
     username: Amministratore
     first_name: ''
@@ -127,8 +142,8 @@
     email: admin@example.org
     is_staff: true
     is_active: true
-    date_joined: 2016-10-29 23:31:09.593442+00:00
-    groups: []
+    date_joined: 2016-10-29 23:31:09+00:00
+    groups: [1]
     user_permissions: []
 - model: xsenia.address
   pk: 1
