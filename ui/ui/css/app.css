@@ -1,0 +1,31 @@
+html {
+  height: 100%; }
+
+body {
+  height: 100vh; }
+
+.nav--main {
+  background: #3C78D8; }
+
+nav .fa-twitter {
+  color: white;
+  height: 30px;
+  font-size: 22px; }
+
+.row.row--main {
+  height: 100%; }
+
+.side {
+  border-left: 1px solid #AAA;
+  background: white;
+  height: 100vh;
+  overflow-y: scroll; }
+
+.main {
+  background: white;
+  height: 100%;
+  overflow-y: scroll; }
+
+#map {
+  height: 600px;
+  width: 100%; }
