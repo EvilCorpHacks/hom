@@ -7,3 +7,5 @@ static/
 *.csv
 *.swp
 *.swo
+
+node_modules/

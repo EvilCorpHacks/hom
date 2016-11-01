@@ -15,11 +15,6 @@ app.config(function(
   // Performance
   //$compileProvider.debugInfoEnabled(false);
 
-  // Load Materialize components
-  $('.modal-trigger').leanModal();
-  //$('a.brand-logo').tabs()
-  $('ul.tabs').tabs();
-
   // REST APIs + Auth
   RestangularProvider.setBaseUrl('/api');
   RestangularProvider.setRequestSuffix('/');
@@ -127,11 +122,4 @@ app.run(function($rootScope, $auth, $http, $state) {
     $rootScope.group = null;
     $state.go('landing');
   };
-
-  //$rootScope.goHome = function() {
-    //$('ul.tabs').tabs('select_tab', 'tab4');
-    //return $state.go('landing');
-  //};
-
-  // return $state.go('admin');
 });

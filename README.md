@@ -13,3 +13,10 @@ Tecnologie principali:
 - Chart.js
 - Feed INGV
 - nginx
+
+## Quickstart
+
+```
+make up
+make init
+```

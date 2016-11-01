@@ -19,6 +19,7 @@ init:
 	${DCX} app django-admin migrate
 	${DCX} app django-admin collectstatic --noinput
 	${DCX} app django-admin loaddata fixtures.yaml
+	npm install
 
 dump:
 	${DCX} app django-admin dumpdata --format=yaml > fixtures.yaml \
