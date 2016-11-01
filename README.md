@@ -1,3 +1,15 @@
-# HOM
+# Xenia (formerly HOM)
 
-TODO
+Tecnologie principali:
+- Angular
+- Django
+- Django Rest Framework
+- Materialize
+- Docker
+- PostgreSQL
+- Twitter
+- OpenStreetMap
+- Leaflet
+- Chart.js
+- Feed INGV
+- nginx
