@@ -6,19 +6,10 @@ services:
     build: ./web
     volumes:
       - './web/site.conf:/etc/nginx/conf.d/site.conf:ro'
-      - './static:/code/static:ro'
+      - '.:/code:ro'
     ports: ['0.0.0.0:8080:8080']
-    depends_on: [app, ui]
-    restart: on-failure
-  ui:
-    build: ./ui
-    command: nodemon -x gulp serve
-    volumes: ['./ui:/code:rw']
-    ports:
-    - 0.0.0.0:3001:3001
-    - 0.0.0.0:8082:8080
     depends_on: [app]
-    restart: always
+    restart: on-failure
   app:
     build: .
     volumes: ['.:/code:rw']

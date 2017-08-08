@@ -1,8 +1,8 @@
 {
-  "name": "evil-app",
+  "name": "xenia",
   "version": "0.0.1",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
